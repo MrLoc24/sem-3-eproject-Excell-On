@@ -52,7 +52,7 @@ namespace webapi.Services
 
         public UserInFo GetById(string id)
         {
-            var user = _context.UserInFos.FirstOrDefault(c => c.UserName == id);
+            var user = _context.UserInFos.FirstOrDefault(c => c.Id == int.Parse(id));
             return user == null ? throw new KeyNotFoundException("User not found") : user;
         }
 

@@ -23,16 +23,16 @@ namespace webapi.Authorization
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-            var customerName = jwtUtilsCus.ValidateJwtTokenCus(token);
-            var userName = jwtUtils.ValidateJwtToken(token);
-            if (customerName != null)
+            var customerId = jwtUtilsCus.ValidateJwtTokenCus(token);
+            var userId = jwtUtils.ValidateJwtToken(token);
+            if (customerId != null)
             {
                 // attach user to context on successful jwt validation
-                context.Items["Customer"] = customerService.GetById(customerName);
+                context.Items["Customer"] = customerService.GetById(customerId);
             }
-            if (userName != null)
+            if (userId != null)
             {
-                context.Items["User"] = userService.GetById(userName);
+                context.Items["User"] = userService.GetById(userId);
             }
             await _next(context);
 

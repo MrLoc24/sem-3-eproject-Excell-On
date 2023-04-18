@@ -33,7 +33,7 @@ namespace webapi.Authorization
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("UserName", user.UserName) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("UserId", user.Id.ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -61,14 +61,12 @@ namespace webapi.Authorization
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var UserName = jwtToken.Claims.First(x => x.Type == "UserName").Value;
-                Console.WriteLine(UserName);
+                var UserId = jwtToken.Claims.First(x => x.Type == "UserId").Value;
                 // return user id from JWT token if validation successful
-                return UserName;
+                return UserId;
             }
             catch
             {
-                Console.WriteLine("Not Auth");
                 // return null if validation fails
                 return null;
             }
