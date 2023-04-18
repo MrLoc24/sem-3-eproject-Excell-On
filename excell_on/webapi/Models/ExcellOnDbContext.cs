@@ -1,0 +1,352 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+
+namespace webapi.Models
+{
+    public partial class ExcellOnDbContext : DbContext
+    {
+        public ExcellOnDbContext()
+        {
+        }
+
+        public ExcellOnDbContext(DbContextOptions<ExcellOnDbContext> options)
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<Banking> Bankings { get; set; } = null!;
+        public virtual DbSet<CardPayment> CardPayments { get; set; } = null!;
+        public virtual DbSet<Company> Companies { get; set; } = null!;
+        public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<Image> Images { get; set; } = null!;
+        public virtual DbSet<MyCompany> MyCompanies { get; set; } = null!;
+        public virtual DbSet<Order> Orders { get; set; } = null!;
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<Service> Services { get; set; } = null!;
+        public virtual DbSet<StaffOrderDetail> StaffOrderDetails { get; set; } = null!;
+        public virtual DbSet<UserInFo> UserInFos { get; set; } = null!;
+        public virtual DbSet<staff> staff { get; set; } = null!;
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server= .\\SQLEXPRESS; Initial Catalog= Excell-On-Db; User ID = sa; Password = 1 ; Integrated Security=True; Trusted_Connection=true ; TrustServerCertificate=True");
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Banking>(entity =>
+            {
+                entity.ToTable("Banking");
+
+                entity.Property(e => e.DateCreate).HasColumnType("date");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Bankings)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK__Banking__Custome__412EB0B6");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Bankings)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK__Banking__OrderId__4222D4EF");
+            });
+
+            modelBuilder.Entity<CardPayment>(entity =>
+            {
+                entity.ToTable("CardPayment");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Cvv).HasColumnName("CVV");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.CardPayments)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_CardPayment_Customer");
+            });
+
+            modelBuilder.Entity<Company>(entity =>
+            {
+                entity.ToTable("Company");
+
+                entity.Property(e => e.CompanyAddress)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyDescription).HasColumnType("text");
+
+                entity.Property(e => e.CompanyEmail)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyPhone)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.ToTable("Customer");
+
+                entity.Property(e => e.CustomerAvatar)
+                    .HasColumnType("text")
+                    .HasDefaultValueSql("('~/Public/Image/avt.png')");
+
+                entity.Property(e => e.CustomerComment).HasColumnType("text");
+
+                entity.Property(e => e.CustomerEmail)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CustomerName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CustomerPassword)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CustomerPhone)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CustomerUserName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Company)
+                    .WithMany(p => p.Customers)
+                    .HasForeignKey(d => d.CompanyId)
+                    .HasConstraintName("FK__Customer__Compan__4316F928");
+            });
+
+            modelBuilder.Entity<Image>(entity =>
+            {
+                entity.ToTable("Image");
+
+                entity.Property(e => e.ImageLink)
+                    .HasColumnType("text")
+                    .HasColumnName("Image_link");
+
+                entity.HasOne(d => d.Service)
+                    .WithMany(p => p.Images)
+                    .HasForeignKey(d => d.ServiceId)
+                    .HasConstraintName("FK__Image__ServiceId__440B1D61");
+            });
+
+            modelBuilder.Entity<MyCompany>(entity =>
+            {
+                entity.ToTable("MyCompany");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.Image).HasColumnType("text");
+
+                entity.Property(e => e.MyMission).HasColumnType("ntext");
+
+                entity.Property(e => e.MyTarget).HasColumnType("ntext");
+
+                entity.Property(e => e.MyVision).HasColumnType("ntext");
+
+                entity.Property(e => e.TaxIdentificationNumber)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.Property(e => e.OrderDateCreate)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Order_DateCreate");
+
+                entity.Property(e => e.OrderDescription)
+                    .HasColumnType("text")
+                    .HasColumnName("Order_Description");
+
+                entity.Property(e => e.OrderStatus).HasColumnName("Order_Status");
+
+                entity.Property(e => e.OrderTotalCost).HasColumnName("Order_TotalCost");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__Customer__5F492382");
+            });
+
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.ToTable("OrderDetail");
+
+                entity.Property(e => e.OrderDetailDateEnd).HasColumnType("datetime");
+
+                entity.Property(e => e.OrderDetailDateStart).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Orders)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrdersId)
+                    .HasConstraintName("FK__OrderDeta__Order__6319B466");
+
+                entity.HasOne(d => d.Service)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.ServiceId)
+                    .HasConstraintName("FK__OrderDeta__Servi__6225902D");
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.ToTable("Role");
+
+                entity.HasIndex(e => e.Role1, "UQ__Role__DA15413EF4AE4BF6")
+                    .IsUnique();
+
+                entity.Property(e => e.Role1)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("Role");
+            });
+
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.ToTable("Service");
+
+                entity.Property(e => e.ServiceDescription).HasColumnType("text");
+
+                entity.Property(e => e.ServiceImage).HasColumnType("text");
+
+                entity.Property(e => e.ServiceName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<StaffOrderDetail>(entity =>
+            {
+                entity.ToTable("Staff_OrderDetail");
+
+                entity.Property(e => e.DateEnd).HasColumnType("datetime");
+
+                entity.Property(e => e.DateStart).HasColumnType("datetime");
+
+                entity.HasOne(d => d.OrderDetail)
+                    .WithMany(p => p.StaffOrderDetails)
+                    .HasForeignKey(d => d.OrderDetailId)
+                    .HasConstraintName("FK__Staff_Ord__Order__7720AD13");
+
+                entity.HasOne(d => d.Staff)
+                    .WithMany(p => p.StaffOrderDetails)
+                    .HasForeignKey(d => d.StaffId)
+                    .HasConstraintName("FK__Staff_Ord__Staff__762C88DA");
+            });
+
+            modelBuilder.Entity<UserInFo>(entity =>
+            {
+                entity.ToTable("UserInFo");
+
+                entity.Property(e => e.Role)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserAboutMe).HasColumnType("text");
+
+                entity.Property(e => e.UserAddress)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserAvatar)
+                    .HasColumnType("text")
+                    .HasDefaultValueSql("('~/Public/Image/avt.png')");
+
+                entity.Property(e => e.UserEmail)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserFullName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserPassword)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserPhone)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.RoleNavigation)
+                    .WithMany(p => p.UserInFos)
+                    .HasPrincipalKey(p => p.Role1)
+                    .HasForeignKey(d => d.Role)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_UserInFo_Role");
+            });
+
+            modelBuilder.Entity<staff>(entity =>
+            {
+                entity.ToTable("Staff");
+
+                entity.Property(e => e.StaffAboutMe).HasColumnType("text");
+
+                entity.Property(e => e.StaffAddress)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StaffAvatar).HasColumnType("text");
+
+                entity.Property(e => e.StaffEmail)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StaffFullName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StaffPassword)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StaffPhone)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StaffUserName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Service)
+                    .WithMany(p => p.staff)
+                    .HasForeignKey(d => d.ServiceId)
+                    .HasConstraintName("FK__Staff__ServiceId__49C3F6B7");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    }
+}
