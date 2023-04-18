@@ -79,16 +79,17 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 
 // custom jwt auth middleware
 app.UseMiddleware<JwtMiddleware>();
-app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/customer"), applicationBuilder =>
-{
-    applicationBuilder.UseMiddleware<JwtMiddlewareCus>();
-});
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Admin}/{action=Index}/{id?}");
-    endpoints.MapControllers();
-});
+//app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/customer"), applicationBuilder =>
+//{
+//    applicationBuilder.UseMiddleware<JwtMiddlewareCus>();
+//});
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllerRoute(
+//        name: "default",
+//        pattern: "{controller=Admin}/{action=Index}/{id?}");
+//    endpoints.MapControllers();
+//});
+app.MapControllers();
 
 app.Run();

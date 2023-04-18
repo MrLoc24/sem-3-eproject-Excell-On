@@ -46,7 +46,7 @@ namespace webapi.Controllers
             var users = _userService.GetAll();
             return Ok(new { status = "ok", message = "", responseObject = users });
         }
-
+        [Authorize("Admin")]
         [HttpGet("{id}")]
 
         public IActionResult GetById(string id)

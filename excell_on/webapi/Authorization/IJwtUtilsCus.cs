@@ -28,7 +28,7 @@ namespace webapi.Authorization
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("Id", customer.Id.ToString()) }),
@@ -45,7 +45,7 @@ namespace webapi.Authorization
                 return null;
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
             try
             {
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
@@ -60,7 +60,6 @@ namespace webapi.Authorization
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var UserId = jwtToken.Claims.First(x => x.Type == "Id").Value;
-                Console.WriteLine(UserId);
                 // return user id from JWT token if validation successful
                 return UserId;
             }

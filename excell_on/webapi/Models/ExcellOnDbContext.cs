@@ -243,7 +243,7 @@ namespace webapi.Models
 
             modelBuilder.Entity<StaffOrderDetail>(entity =>
             {
-                entity.ToTable("Staff_OrderDetail");
+                entity.ToTable("StaffOrderDetail");
 
                 entity.Property(e => e.DateEnd).HasColumnType("datetime");
 
@@ -267,8 +267,6 @@ namespace webapi.Models
                 entity.Property(e => e.Role)
                     .HasMaxLength(255)
                     .IsUnicode(false);
-
-                entity.Property(e => e.UserAboutMe).HasColumnType("text");
 
                 entity.Property(e => e.UserAddress)
                     .HasMaxLength(255)

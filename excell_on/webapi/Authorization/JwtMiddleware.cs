@@ -19,16 +19,24 @@ namespace webapi.Authorization
             _appSettings = appSettings.Value;
         }
 
-        public async Task Invoke(HttpContext context, IUserService userService, IJwtUtils jwtUtils)
+        public async Task Invoke(HttpContext context, IUserService userService, ICustomerService customerService, IJwtUtils jwtUtils, IJwtUtilsCus jwtUtilsCus)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+            var customerName = jwtUtilsCus.ValidateJwtTokenCus(token);
             var userName = jwtUtils.ValidateJwtToken(token);
-            if (userName != null)
+            if (customerName != null)
             {
                 // attach user to context on successful jwt validation
+                context.Items["Customer"] = customerService.GetById(customerName);
+            }
+            if (userName != null)
+            {
                 context.Items["User"] = userService.GetById(userName);
             }
             await _next(context);
+
+
         }
     }
 }

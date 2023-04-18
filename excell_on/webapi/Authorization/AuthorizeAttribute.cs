@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.IdentityModel.Tokens;
 
 namespace webapi.Authorization
 {
@@ -28,8 +29,7 @@ namespace webapi.Authorization
             // authorization
             var user = (UserInFo)context.HttpContext.Items["User"];
             var customer = (Customer)context.HttpContext.Items["Customer"];
-
-            if (user == null && customer == null || (_roles.Any() && !_roles.Contains(user.Role)))
+            if (user == null && customer == null || customer != null && _roles.Any() || (_roles.Any() && !_roles.Contains(user.Role)))
             {
                 // not logged in or role not authorized
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };

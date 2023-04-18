@@ -2725,11 +2725,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\loclo\\Desktop\\FPT\\Project_3\\excell_on\\webapi\\webapi.csproj",
+      "projectUniqueName": "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "C:\\Users\\loclo\\Desktop\\FPT\\Project_3\\excell_on\\webapi\\webapi.csproj",
+      "projectPath": "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj",
       "packagesPath": "C:\\Users\\loclo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\loclo\\Desktop\\FPT\\Project_3\\excell_on\\webapi\\obj\\",
+      "outputPath": "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
