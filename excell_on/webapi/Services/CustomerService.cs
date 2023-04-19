@@ -60,7 +60,7 @@ namespace webapi.Services
             }
             if (_context.Customers.Any(x => x.CustomerName == customer.CustomerName))
             {
-                throw new AppException("User with email address: " + customer.CustomerName + "already exists");
+                throw new AppException("User with user name: " + customer.CustomerName + "already exists");
             }
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(customer.CustomerPassword);
             customer.CustomerPassword = hashedPassword;

@@ -52,6 +52,7 @@ builder.Services.AddScoped<IJwtUtils, JwtUtils>();
 builder.Services.AddScoped<IJwtUtilsCus, JwtUtilsCus>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

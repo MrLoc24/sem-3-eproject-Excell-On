@@ -39,7 +39,7 @@ namespace webapi.Controllers
             return Ok(response);
         }
 
-        [Authorize("Admin")]
+        [Authorize("Admin", "HR")]
         [HttpGet]
         public IActionResult GetAll()
         {
