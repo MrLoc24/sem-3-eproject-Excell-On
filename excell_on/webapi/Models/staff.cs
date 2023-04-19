@@ -11,8 +11,6 @@ namespace webapi.Models
         }
 
         public int Id { get; set; }
-        public string? StaffUserName { get; set; }
-        public string? StaffPassword { get; set; }
         public string? StaffEmail { get; set; }
         public int? StaffGender { get; set; }
         public int? StaffAge { get; set; }
@@ -21,7 +19,6 @@ namespace webapi.Models
         public string? StaffAddress { get; set; }
         public string? StaffAvatar { get; set; }
         public string? StaffFullName { get; set; }
-        public string? StaffAboutMe { get; set; }
         public int? ServiceId { get; set; }
         public int? Deleted { get; set; }
 

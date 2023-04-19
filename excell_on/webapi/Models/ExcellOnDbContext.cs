@@ -18,9 +18,7 @@ namespace webapi.Models
 
         public virtual DbSet<Banking> Bankings { get; set; } = null!;
         public virtual DbSet<CardPayment> CardPayments { get; set; } = null!;
-        public virtual DbSet<Company> Companies { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
-        public virtual DbSet<Image> Images { get; set; } = null!;
         public virtual DbSet<MyCompany> MyCompanies { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
@@ -35,7 +33,7 @@ namespace webapi.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= .\\SQLEXPRESS; Initial Catalog= Excell-On-Db; User ID = sa; Password = 1 ; Integrated Security=True; Trusted_Connection=true ; TrustServerCertificate=True");
+                optionsBuilder.UseSqlServer("Server= .\\SQLEXPRESS; Initial Catalog= Excell-On-Db; User ID = sa; Password = 1 ; Integrated Security=True; Trusted_Connection=true");
             }
         }
 
@@ -68,33 +66,12 @@ namespace webapi.Models
 
                 entity.Property(e => e.Cvv).HasColumnName("CVV");
 
+                entity.Property(e => e.DateExpired).HasColumnType("date");
+
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.CardPayments)
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_CardPayment_Customer");
-            });
-
-            modelBuilder.Entity<Company>(entity =>
-            {
-                entity.ToTable("Company");
-
-                entity.Property(e => e.CompanyAddress)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CompanyDescription).HasColumnType("text");
-
-                entity.Property(e => e.CompanyEmail)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CompanyName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CompanyPhone)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -104,8 +81,6 @@ namespace webapi.Models
                 entity.Property(e => e.CustomerAvatar)
                     .HasColumnType("text")
                     .HasDefaultValueSql("('~/Public/Image/avt.png')");
-
-                entity.Property(e => e.CustomerComment).HasColumnType("text");
 
                 entity.Property(e => e.CustomerEmail)
                     .HasMaxLength(255)
@@ -126,25 +101,6 @@ namespace webapi.Models
                 entity.Property(e => e.CustomerUserName)
                     .HasMaxLength(255)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.Company)
-                    .WithMany(p => p.Customers)
-                    .HasForeignKey(d => d.CompanyId)
-                    .HasConstraintName("FK__Customer__Compan__4316F928");
-            });
-
-            modelBuilder.Entity<Image>(entity =>
-            {
-                entity.ToTable("Image");
-
-                entity.Property(e => e.ImageLink)
-                    .HasColumnType("text")
-                    .HasColumnName("Image_link");
-
-                entity.HasOne(d => d.Service)
-                    .WithMany(p => p.Images)
-                    .HasForeignKey(d => d.ServiceId)
-                    .HasConstraintName("FK__Image__ServiceId__440B1D61");
             });
 
             modelBuilder.Entity<MyCompany>(entity =>
@@ -178,16 +134,9 @@ namespace webapi.Models
             {
                 entity.Property(e => e.OrderDateCreate)
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("Order_DateCreate");
+                    .IsUnicode(false);
 
-                entity.Property(e => e.OrderDescription)
-                    .HasColumnType("text")
-                    .HasColumnName("Order_Description");
-
-                entity.Property(e => e.OrderStatus).HasColumnName("Order_Status");
-
-                entity.Property(e => e.OrderTotalCost).HasColumnName("Order_TotalCost");
+                entity.Property(e => e.OrderDescription).HasColumnType("text");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
@@ -308,8 +257,6 @@ namespace webapi.Models
             {
                 entity.ToTable("Staff");
 
-                entity.Property(e => e.StaffAboutMe).HasColumnType("text");
-
                 entity.Property(e => e.StaffAddress)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -324,16 +271,8 @@ namespace webapi.Models
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StaffPassword)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.StaffPhone)
                     .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.StaffUserName)
-                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Service)

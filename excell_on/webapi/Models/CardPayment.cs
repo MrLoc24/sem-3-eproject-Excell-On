@@ -9,6 +9,7 @@ namespace webapi.Models
         public int? CustomerId { get; set; }
         public int? CardNumber { get; set; }
         public int? Cvv { get; set; }
+        public DateTime? DateExpired { get; set; }
 
         public virtual Customer? Customer { get; set; }
     }

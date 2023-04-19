@@ -18,13 +18,10 @@ namespace webapi.Models
         public string? CustomerEmail { get; set; }
         public string? CustomerUserName { get; set; }
         public string? CustomerPassword { get; set; }
-        public int? CompanyId { get; set; }
-        public string? CustomerComment { get; set; }
         public string? CustomerAvatar { get; set; }
         public int? CustomerGender { get; set; }
         public int? Deleted { get; set; }
 
-        public virtual Company? Company { get; set; }
         public virtual ICollection<Banking> Bankings { get; set; }
         public virtual ICollection<CardPayment> CardPayments { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

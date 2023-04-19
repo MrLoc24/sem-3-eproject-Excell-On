@@ -7,7 +7,6 @@ namespace webapi.Models
     {
         public Service()
         {
-            Images = new HashSet<Image>();
             OrderDetails = new HashSet<OrderDetail>();
             staff = new HashSet<staff>();
         }
@@ -16,12 +15,9 @@ namespace webapi.Models
         public string? ServiceName { get; set; }
         public double? ServicePrice { get; set; }
         public string? ServiceDescription { get; set; }
-        public int? ServiceSaleStatus { get; set; }
         public string? ServiceImage { get; set; }
-        public double? ServicePriceSale { get; set; }
         public int? Deleted { get; set; }
 
-        public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<staff> staff { get; set; }
     }

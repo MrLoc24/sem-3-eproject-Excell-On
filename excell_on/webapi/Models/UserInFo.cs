@@ -15,7 +15,7 @@ namespace webapi.Models
         public string? UserAddress { get; set; }
         public string? UserAvatar { get; set; }
         public string? UserFullName { get; set; }
-        public string? Role { get; set; }
+        public string Role { get; set; }
 
         public virtual Role? RoleNavigation { get; set; }
     }
