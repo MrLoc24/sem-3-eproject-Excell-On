@@ -1,44 +1,59 @@
 {
-  "name": "reactapp",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "http-proxy-middleware": "^2.0.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+  "name": "@coreui/coreui-free-react-admin-template",
+  "version": "4.5.0",
+  "description": "CoreUI Free React Admin Template",
+  "homepage": ".",
+  "bugs": {
+    "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:coreui/coreui-free-react-admin-template.git"
+  },
+  "license": "MIT",
+  "author": "The CoreUI Team (https://github.com/orgs/coreui/people)",
   "scripts": {
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prestart": "node aspnetcore-https && node aspnetcore-react"
+    "test:cov": "npm test -- --coverage --watchAll=false",
+    "test:debug": "react-scripts --inspect-brk test --runInBand"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@coreui/chartjs": "^3.1.1",
+    "@coreui/coreui": "^4.2.6",
+    "@coreui/icons": "^3.0.1",
+    "@coreui/icons-react": "^2.1.0",
+    "@coreui/react": "^4.6.0",
+    "@coreui/react-chartjs": "^2.1.2",
+    "@coreui/utils": "^2.0.1",
+    "axios": "^1.3.6",
+    "chart.js": "^3.9.1",
+    "classnames": "^2.3.2",
+    "core-js": "^3.29.0",
+    "http-proxy-middleware": "^2.0.6",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.8.2",
+    "redux": "4.2.1",
+    "simplebar": "^6.2.5",
+    "simplebar-react": "^3.2.4"
   },
   "devDependencies": {
-    "eslint-config-react-app": "^7.0.1",
-    "jest-editor-support": "^31.0.1"
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "prettier": "2.8.4",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.58.3",
+    "web-vitals": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=10",
+    "npm": ">=6"
   }
 }
