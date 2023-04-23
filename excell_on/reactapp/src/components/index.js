@@ -7,7 +7,9 @@ import AppSidebar from './AppSidebar'
 import DocsCallout from './DocsCallout'
 import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
-
+import AppCustomerFooter from './AppCustomerFooter'
+import AppCustomerHeader from './AppCustomerHeader'
+import AppCustomerContent from './AppCustomerContent'
 export {
   AppBreadcrumb,
   AppContent,
@@ -18,4 +20,7 @@ export {
   DocsCallout,
   DocsLink,
   DocsExample,
+  AppCustomerFooter,
+  AppCustomerHeader,
+  AppCustomerContent,
 }
