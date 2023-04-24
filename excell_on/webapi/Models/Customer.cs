@@ -19,7 +19,6 @@ namespace webapi.Models
         public string? CustomerUserName { get; set; }
         public string? CustomerPassword { get; set; }
         public string? CustomerAvatar { get; set; }
-        public int? CustomerGender { get; set; }
         public int? Deleted { get; set; }
 
         public virtual ICollection<Banking> Bankings { get; set; }

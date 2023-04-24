@@ -1,86 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import ServiceService from 'src/service/ServiceService'
 const AppCustomerHeader = () => {
+  const [services, setService] = useState([])
+  useEffect(() => {
+    ServiceService.GetAll().then((response) => {
+      const data = response.responseObject.map((ser) => {
+        return {
+          serviceName: ser.serviceName,
+          id: ser.id,
+        }
+      })
+      let services = data
+      setService(services)
+    })
+  }, [])
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">
-                Disabled
-              </a>
-            </li>
-          </ul>
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" fixed="top">
+      <Container>
+        <Navbar.Brand href="/">Excell-On</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="justify-content-end flex-grow-1 pe-3">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="#/about">About Us</Nav.Link>
+            <NavDropdown title="Service" id="collasible-nav-dropdown">
+              {services.map((ser, index) => (
+                <NavDropdown.Item href={`service/${ser.id}`} key={index}>
+                  {ser.serviceName}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+          </Nav>
+          <Nav>
+            <Nav.Link href="#deets">Login</Nav.Link>
+            <Nav.Link eventKey={2} href="#memes">
+              Dank memes
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 export default AppCustomerHeader

@@ -18,14 +18,14 @@ import { useNavigate } from 'react-router-dom'
 import AuthService from 'src/service/AuthService'
 
 const Login = () => {
-  const [username, setUsername, message] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   let navigate = useNavigate()
   const handleLogin = (e) => {
     e.preventDefault()
     AuthService.login(username, password).then(
       () => {
-        navigate('/dashboard')
+        navigate('/admin/dashboard')
         window.location.reload()
         console.log('login successful')
       },
@@ -35,8 +35,6 @@ const Login = () => {
           error.message ||
           error.toString()
         console.log(resMessage)
-
-        message(resMessage)
       },
     )
   }
