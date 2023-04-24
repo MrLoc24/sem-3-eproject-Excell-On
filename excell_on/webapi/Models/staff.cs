@@ -21,7 +21,9 @@ namespace webapi.Models
         public string? StaffFullName { get; set; }
         public int? ServiceId { get; set; }
         public int? Deleted { get; set; }
+        public int? DepartmentId { get; set; }
 
+        public virtual Department? Department { get; set; }
         public virtual Service? Service { get; set; }
         public virtual ICollection<StaffOrderDetail> StaffOrderDetails { get; set; }
     }

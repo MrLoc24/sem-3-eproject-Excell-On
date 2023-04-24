@@ -19,6 +19,7 @@ namespace webapi.Models
         public virtual DbSet<Banking> Bankings { get; set; } = null!;
         public virtual DbSet<CardPayment> CardPayments { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<Department> Departments { get; set; } = null!;
         public virtual DbSet<MyCompany> MyCompanies { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
@@ -33,7 +34,7 @@ namespace webapi.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= .\\SQLEXPRESS; Initial Catalog= Excell-On-Db; User ID = sa; Password = 1 ; Integrated Security=True; Trusted_Connection=true");
+                optionsBuilder.UseSqlServer("Server= .\\SQLEXPRESS; Initial Catalog= Excell-On-Db; User ID = sa; Password = 1 ; Integrated Security=True; Trusted_Connection=true ; TrustServerCertificate=True");
             }
         }
 
@@ -103,6 +104,17 @@ namespace webapi.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Department>(entity =>
+            {
+                entity.ToTable("Department");
+
+                entity.Property(e => e.Description).HasColumnType("text");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<MyCompany>(entity =>
             {
                 entity.ToTable("MyCompany");
@@ -152,6 +164,12 @@ namespace webapi.Models
                 entity.Property(e => e.OrderDetailDateEnd).HasColumnType("datetime");
 
                 entity.Property(e => e.OrderDetailDateStart).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Derpartment)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.DerpartmentId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_OrderDetail_Department");
 
                 entity.HasOne(d => d.Orders)
                     .WithMany(p => p.OrderDetails)
@@ -274,6 +292,12 @@ namespace webapi.Models
                 entity.Property(e => e.StaffPhone)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Department)
+                    .WithMany(p => p.staff)
+                    .HasForeignKey(d => d.DepartmentId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Staff_Department");
 
                 entity.HasOne(d => d.Service)
                     .WithMany(p => p.staff)

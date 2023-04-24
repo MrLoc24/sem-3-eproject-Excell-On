@@ -7,9 +7,8 @@ class AuthService {
     const response = await axios.post(URL + '/user/authenticate', { username, password })
     if (response.data.token) {
       sessionStorage.setItem('user', JSON.stringify(response.data))
-      sessionStorage.setItem('token', JSON.stringify(response.data.token))
+      return response.data
     }
-    return response.data
   }
   logout = () => {
     sessionStorage.removeItem('user')

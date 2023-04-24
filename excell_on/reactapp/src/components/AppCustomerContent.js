@@ -3,14 +3,14 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
-import routes from '../routes'
+import routesCustomer from '../routesCustomer'
 
-const AppContent = () => {
+const AppCustomerContent = () => {
   return (
     <CContainer lg>
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
-          {routes.map((route, idx) => {
+          {routesCustomer.map((route, idx) => {
             return (
               route.element && (
                 <Route
@@ -23,11 +23,10 @@ const AppContent = () => {
               )
             )
           })}
-          <Route path="/" element={<Navigate to="home" replace />} />
         </Routes>
       </Suspense>
     </CContainer>
   )
 }
 
-export default React.memo(AppContent)
+export default React.memo(AppCustomerContent)
