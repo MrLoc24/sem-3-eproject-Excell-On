@@ -27,10 +27,6 @@ const _nav = [
     },
   },
   {
-    component: CNavTitle,
-    name: 'Theme',
-  },
-  {
     component: CNavItem,
     name: 'Colors',
     to: 'theme/colors',
@@ -43,10 +39,6 @@ const _nav = [
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
-    component: CNavTitle,
-    name: 'Components',
-  },
-  {
     component: CNavGroup,
     name: 'Base',
     to: '/base',
@@ -55,7 +47,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Accordion',
-        to: '/base/accordion',
+        to: 'base/accordion',
       },
       {
         component: CNavItem,

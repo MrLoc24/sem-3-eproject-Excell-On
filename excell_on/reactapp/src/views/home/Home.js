@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ServiceHome from './ServiceHome'
 import MyCompanyService from 'src/service/MyCompanyService'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 const Home = () => {
@@ -99,6 +100,8 @@ const Home = () => {
           </div>
         </div>
       ))}
+      <h1 className="text-center">OUR SERVICES</h1>
+      <ServiceHome />
     </>
   )
 }
