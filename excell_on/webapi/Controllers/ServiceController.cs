@@ -37,5 +37,11 @@ namespace webapi.Controllers
             _serviceService.Create(services);
             return Ok(new { message = "New service created" });
         }
+        [HttpPut("{id}"), Authorize("Admin", "Manager")]
+        public IActionResult Update(int id,Service services)
+        {
+            _serviceService.Update(id, services);
+            return Ok(new { message = "Update Successfully" });
+        }
     }
 }

@@ -30,7 +30,7 @@ const AppCustomerHeader = () => {
             <Nav.Link href="#/about">About Us</Nav.Link>
             <NavDropdown title="Service" id="collasible-nav-dropdown">
               {services.map((ser, index) => (
-                <NavDropdown.Item href={`service/${ser.id}`} key={index}>
+                <NavDropdown.Item href={`#/service/${ser.id}`} key={index}>
                   {ser.serviceName}
                 </NavDropdown.Item>
               ))}

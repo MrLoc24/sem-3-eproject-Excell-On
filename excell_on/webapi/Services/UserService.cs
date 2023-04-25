@@ -12,6 +12,8 @@ namespace webapi.Services
         IEnumerable<UserInFo> GetAll();
 
         UserInFo GetById(string UserName);
+
+        //void UpdateProfile(UserInFo userInFo);
     }
 
     public class UserService : IUserService

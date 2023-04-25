@@ -1,4 +1,5 @@
-﻿using webapi.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using webapi.Models;
 
 namespace webapi.Services
 {
@@ -8,6 +9,7 @@ namespace webapi.Services
         Service GetById(int id);
 
         void Create(Service service);
+        void Update(int id, Service service);
     }
     public class ServiceService : IServiceService
     {
@@ -32,6 +34,22 @@ namespace webapi.Services
         {
             _excellOnDbContext.Services.Add(service);
             _excellOnDbContext.SaveChanges();
+        }
+
+        public void Update(int id, Service service)
+        {
+            try
+            {
+                var entry = _excellOnDbContext.Services.First(e => e.Id == service.Id);
+                _excellOnDbContext.Entry(service).CurrentValues.SetValues(service);
+                _excellOnDbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                // handle correct exception
+                // log error
+                Console.WriteLine(e.Message);
+            }
 
         }
     }
