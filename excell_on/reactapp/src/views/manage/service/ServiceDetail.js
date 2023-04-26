@@ -31,7 +31,7 @@ const ServiceDetail = () => {
         Service id:
         <input
           type="text"
-          value={serviceDetail.id}
+          value={serviceDetail.id || ''}
           onChange={handleInputChange}
           name="id"
           readOnly
@@ -42,7 +42,7 @@ const ServiceDetail = () => {
         Service Name:
         <input
           type="textarea"
-          value={serviceDetail.serviceName}
+          value={serviceDetail.serviceName || ''}
           onChange={handleInputChange}
           name="serviceName"
         />
@@ -50,19 +50,19 @@ const ServiceDetail = () => {
 
       <input
         type="text"
-        value={serviceDetail.serviceDescription}
+        value={serviceDetail.serviceDescription || ''}
         onChange={handleInputChange}
         name="serviceDescription"
       />
       <input
         type="text"
-        value={serviceDetail.servicePrice}
+        value={serviceDetail.servicePrice || ''}
         onChange={handleInputChange}
         name="servicePrice"
       />
       <input
         type="text"
-        value={serviceDetail.deleted}
+        value={serviceDetail.deleted || ''}
         onChange={handleInputChange}
         name="deleted"
       />
@@ -70,7 +70,7 @@ const ServiceDetail = () => {
         Service Name:
         <input
           type="text"
-          value={serviceDetail.serviceImage}
+          value={serviceDetail.serviceImage || ''}
           onChange={handleInputChange}
           name="serviceImage"
         />
