@@ -13,7 +13,9 @@ namespace webapi.Services
 
         UserInFo GetById(string UserName);
 
-        //void UpdateProfile(UserInFo userInFo);
+        void ChangePassword(string id, string newPassword);
+
+        void UpdateProfile(UserInFo userInFo);
     }
 
     public class UserService : IUserService
@@ -58,5 +60,30 @@ namespace webapi.Services
             return user == null ? throw new KeyNotFoundException("User not found") : user;
         }
 
+        public void ChangePassword(string id, string newPassword)
+        {
+            UserInFo foundUser = GetById(id);
+            if (BCrypt.Net.BCrypt.Verify(newPassword, foundUser.UserPassword))
+            {
+                throw new Exception("Same old thing!!!");
+            }
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            foundUser.UserPassword = hashedPassword;
+            _context.UserInFos.Update(foundUser);
+            _context.SaveChanges();
+        }
+
+        public void UpdateProfile(UserInFo user)
+        {
+            UserInFo foundUser = GetById(user.Id.ToString());
+            foundUser.UserPhone = user.UserPhone;
+            foundUser.UserEmail = user.UserEmail;
+            foundUser.UserAge = user.UserAge;
+            foundUser.UserName = user.UserName;
+            foundUser.UserFullName = user.UserFullName;
+            foundUser.UserAddress = user.UserAddress;
+            _context.UserInFos.Update(foundUser);
+            _context.SaveChanges();
+        }
     }
 }

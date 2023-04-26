@@ -10,7 +10,7 @@ const DefaultLayout = () => {
     if (loggedInUser) {
       setAuthenticated(loggedInUser)
     } else {
-      navigate('/login')
+      navigate('/admin/login')
     }
   }, [])
 

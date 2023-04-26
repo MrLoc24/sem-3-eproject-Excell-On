@@ -1,4 +1,6 @@
-﻿namespace webapi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace webapi.Models
 {
     public class ChangePasswordBindingModel
     {

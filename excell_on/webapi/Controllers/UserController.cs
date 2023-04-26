@@ -46,7 +46,6 @@ namespace webapi.Controllers
             var users = _userService.GetAll();
             return Ok(new { status = "ok", message = "", responseObject = users });
         }
-        [Authorize("Admin")]
         [HttpGet("{id}")]
 
         public IActionResult GetById(string id)
@@ -60,8 +59,33 @@ namespace webapi.Controllers
             return Ok(new { status = "ok", message = "", responseObject = user });
         }
 
+        [HttpPut("changePassword/{id}")]
+        public IActionResult ChangePassword(string id, string newPassword)
+        {
+            try
+            {
+                _userService.ChangePassword(id, newPassword);
+            }
+            catch (Exception e)
+            {
+                return Ok(new { status = "fail", message = e.Message, responseObject = "" });
+            }
+            return Ok(new { message = "Password Update" });
+        }
 
-
+        [HttpPut("updateProfile/{id}")]
+        public IActionResult UpdateProfile(UserInFo user)
+        {
+            try
+            {
+                _userService.UpdateProfile(user);
+            }
+            catch (Exception e)
+            {
+                return Ok(new { status = "fail", message = e.Message });
+            }
+            return Ok(new { message = "Profile Update" });
+        }
 
     }
 }
