@@ -49,6 +49,11 @@ const Accordion = () => {
       selector: (row) => row.price,
       sortable: true,
     },
+    {
+      name: 'Status',
+      selector: (row) => row.deleted,
+      sortable: true,
+    },
   ]
 
   return (

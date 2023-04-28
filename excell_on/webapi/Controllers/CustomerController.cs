@@ -35,6 +35,12 @@ namespace webapi.Controllers
             return Ok(response);
         }
 
+        [HttpGet, Authorize("HR", "Admin")]
+        public IActionResult GetAll() {
+            var customer = _customerService.GetAll();
+            return Ok(new { status = "ok", message = "", responseObject = customer });
+        }
+
         [HttpGet("{id}")]
 
         public IActionResult GetById(string id)

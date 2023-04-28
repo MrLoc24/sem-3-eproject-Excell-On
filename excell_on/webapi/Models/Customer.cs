@@ -19,7 +19,7 @@ namespace webapi.Models
         public string? CustomerUserName { get; set; }
         public string? CustomerPassword { get; set; }
         public string? CustomerAvatar { get; set; }
-        public int? Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         public virtual ICollection<Banking> Bankings { get; set; }
         public virtual ICollection<CardPayment> CardPayments { get; set; }

@@ -61,7 +61,7 @@ const AppHeaderDropdown = () => {
           </CBadge>
         </CDropdownItem>
         <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
-        <CDropdownItem href="#">
+        <CDropdownItem href={`#/admin/manage/myprofile/` + sessionStorage.getItem('id')}>
           <CIcon icon={cilUser} className="me-2" />
           Profile
         </CDropdownItem>

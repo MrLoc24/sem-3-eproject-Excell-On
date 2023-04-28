@@ -20,7 +20,7 @@ namespace webapi.Models
         public string? StaffAvatar { get; set; }
         public string? StaffFullName { get; set; }
         public int? ServiceId { get; set; }
-        public int? Deleted { get; set; }
+        public bool? Deleted { get; set; }
         public int? DepartmentId { get; set; }
 
         public virtual Department? Department { get; set; }

@@ -11,24 +11,14 @@ class ServiceService {
     const response = await axios.get(URL + '/service/' + id)
     return response.data.responseObject
   }
-  UpdateById = async (
-    sid,
-    { id, serviceName, serviceDescription, serviceImage, servicePrice, deleted },
-  ) => {
+  UpdateById = async (sid, data) => {
     const response = await axios({
       method: 'put',
       url: URL + '/service/' + sid,
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
       },
-      data: {
-        id,
-        serviceName,
-        serviceDescription,
-        serviceImage,
-        servicePrice,
-        deleted,
-      },
+      data: data,
     })
 
     return response.data.status

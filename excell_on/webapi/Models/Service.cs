@@ -16,7 +16,7 @@ namespace webapi.Models
         public double? ServicePrice { get; set; }
         public string? ServiceDescription { get; set; }
         public string? ServiceImage { get; set; }
-        public int? Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<staff> staff { get; set; }

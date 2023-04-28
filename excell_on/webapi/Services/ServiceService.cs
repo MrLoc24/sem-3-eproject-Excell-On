@@ -40,8 +40,12 @@ namespace webapi.Services
         {
             try
             {
-                var entry = _excellOnDbContext.Services.First(e => e.Id == service.Id);
-                _excellOnDbContext.Entry(service).CurrentValues.SetValues(service);
+                var foundService = GetById(id);
+                if (foundService != null)
+                {
+                    foundService = service;
+                }
+                _excellOnDbContext.Services.Update(foundService);
                 _excellOnDbContext.SaveChanges();
             }
             catch (Exception e)

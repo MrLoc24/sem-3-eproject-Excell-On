@@ -40,7 +40,16 @@ namespace webapi.Controllers
         [HttpPut("{id}"), Authorize("Admin", "Manager")]
         public IActionResult Update(int id,Service services)
         {
-            _serviceService.Update(id, services);
+            try
+            {
+                _serviceService.Update(id, services);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(new { message = e.Message });
+            }
+            
             return Ok(new { message = "Update Successfully" });
         }
     }

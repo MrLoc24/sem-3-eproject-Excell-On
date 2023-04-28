@@ -8,8 +8,8 @@ namespace webapi.Models
         public int Id { get; set; }
         public DateTime? DateCreate { get; set; }
         public double? Money { get; set; }
-        public int? Deleted { get; set; }
-        public int? Status { get; set; }
+        public bool? Deleted { get; set; }
+        public bool? Status { get; set; }
         public int? OrderId { get; set; }
         public int? CustomerId { get; set; }
 

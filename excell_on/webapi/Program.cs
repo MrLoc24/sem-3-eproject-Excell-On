@@ -18,7 +18,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<ExcellOnDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("con")));
+builder.Services.AddDbContext<ExcellOnDbContext>(opt => {
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("con"));
+    opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+}
+);
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "excell-on-be", Version = "v1" });

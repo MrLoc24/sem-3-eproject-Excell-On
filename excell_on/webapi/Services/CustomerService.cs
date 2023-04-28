@@ -9,6 +9,8 @@ namespace webapi.Services
     {
         AuthenticateResponseCustomer Authenticate(AuthenticateRequest model);
 
+        IEnumerable<Customer> GetAll();
+
         Customer GetById(string Id);
 
         void CreateCustomer(Customer customer);
@@ -45,6 +47,10 @@ namespace webapi.Services
             return jwtToken == null ? throw new KeyNotFoundException("JWT Null") : new AuthenticateResponseCustomer(customer, jwtToken);
         }
 
+        public IEnumerable<Customer> GetAll()
+        {
+            return _context.Customers.ToList();
+        }
 
         public Customer GetById(string id)
         {
