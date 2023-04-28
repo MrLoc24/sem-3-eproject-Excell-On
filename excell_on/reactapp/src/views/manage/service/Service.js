@@ -25,16 +25,6 @@ const Accordion = () => {
   }
   const columns = [
     {
-      cell: (row) => (
-        <button className="btn btn-primary" onClick={(e) => handleButtonClick(e, row.id)}>
-          Detail
-        </button>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
-    },
-    {
       name: 'Id',
       selector: (row) => row.id,
       sortable: true,
@@ -53,6 +43,16 @@ const Accordion = () => {
       name: 'Status',
       selector: (row) => row.deleted,
       sortable: true,
+    },
+    {
+      cell: (row) => (
+        <button className="btn btn-primary" onClick={(e) => handleButtonClick(e, row.id)}>
+          Detail
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
     },
   ]
 
