@@ -23,15 +23,18 @@ namespace webapi.Services
         private readonly ExcellOnDbContext _context;
         private readonly IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public UserService(
             ExcellOnDbContext context,
             IJwtUtils jwtUtils,
-            IOptions<AppSettings> appSettings)
+            IOptions<AppSettings> appSettings,
+            IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _jwtUtils = jwtUtils;
             _appSettings = appSettings.Value;
+            _hostEnvironment = hostEnvironment;
         }
 
 
@@ -51,7 +54,7 @@ namespace webapi.Services
 
         public IEnumerable<UserInFo> GetAll()
         {
-            return _context.UserInFos;
+            return _context.UserInFos.ToList();
         }
 
         public UserInFo GetById(string id)
@@ -85,5 +88,7 @@ namespace webapi.Services
             _context.UserInFos.Update(foundUser);
             _context.SaveChanges();
         }
+
+
     }
 }

@@ -18,7 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<ExcellOnDbContext>(opt => {
+builder.Services.AddDbContext<ExcellOnDbContext>(opt =>
+{
     opt.UseSqlServer(builder.Configuration.GetConnectionString("con"));
     opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 }
@@ -71,6 +72,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
 
 app.UseRouting();
 
