@@ -6,7 +6,7 @@ import Tab from 'react-bootstrap/Tab'
 
 import ChangePasswordForm from './ChangePasswordForm'
 import ChangProfileForm from './ChangeProfileForm'
-import Page404 from 'src/views/pages/page401/Page401'
+import ChangeAvatar from './ChangeAvatar'
 const MyProfile = () => {
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -20,7 +20,7 @@ const MyProfile = () => {
               <Nav.Link eventKey="second">Change Password</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="third">401</Nav.Link>
+              <Nav.Link eventKey="third">Change Profile Image</Nav.Link>
             </Nav.Item>
           </Nav>
         </Col>
@@ -33,7 +33,7 @@ const MyProfile = () => {
               <ChangePasswordForm />
             </Tab.Pane>
             <Tab.Pane eventKey="third">
-              <Page404 />
+              <ChangeAvatar />
             </Tab.Pane>
           </Tab.Content>
         </Col>

@@ -11,6 +11,18 @@ class UserService {
     })
     return response.data
   }
+
+  GetRoles = async () => {
+    const response = await axios({
+      method: 'GET',
+      url: URL + '/user/Roles',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
+      },
+    })
+    return response.data.responseObject
+  }
+
   GetById = async (id) => {
     const response = await axios({
       method: 'get',
@@ -38,6 +50,29 @@ class UserService {
     const response = await axios({
       method: 'put',
       url: URL + '/user/updateProfile/' + id,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
+      },
+      data: data,
+    })
+    return response.data
+  }
+
+  UpdateAvatar = async (id, data) => {
+    const response = await axios({
+      method: 'put',
+      url: URL + '/user/updateAvatar/' + id + '?url=' + data,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
+      },
+    })
+    return response.data
+  }
+
+  AddNew = async (data) => {
+    const response = await axios({
+      method: 'post',
+      url: URL + '/user/addNew',
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
       },

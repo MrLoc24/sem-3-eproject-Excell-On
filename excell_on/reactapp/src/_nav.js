@@ -46,6 +46,11 @@ const _nav = [
         name: 'Our Customer',
         to: 'manage/customer',
       },
+      {
+        component: CNavItem,
+        name: 'Manager',
+        to: 'manage/otherManager',
+      },
     ],
   },
 ]

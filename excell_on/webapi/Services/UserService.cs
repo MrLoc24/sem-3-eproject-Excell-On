@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using webapi.Authorization;
 using webapi.Helpers;
 using webapi.Models;
@@ -11,11 +12,17 @@ namespace webapi.Services
         AuthenticateResponse Authenticate(AuthenticateRequest model);
         IEnumerable<UserInFo> GetAll();
 
+        IEnumerable<Role> GetAllRoles();
+
         UserInFo GetById(string UserName);
 
         void ChangePassword(string id, string newPassword);
 
         void UpdateProfile(UserInFo userInFo);
+
+        void UpdateAvatar(string id, string url);
+
+        void AddNewUser(UserInFo user);
     }
 
     public class UserService : IUserService
@@ -23,18 +30,15 @@ namespace webapi.Services
         private readonly ExcellOnDbContext _context;
         private readonly IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
-        private readonly IWebHostEnvironment _hostEnvironment;
 
         public UserService(
             ExcellOnDbContext context,
             IJwtUtils jwtUtils,
-            IOptions<AppSettings> appSettings,
-            IWebHostEnvironment hostEnvironment)
+            IOptions<AppSettings> appSettings)
         {
             _context = context;
             _jwtUtils = jwtUtils;
             _appSettings = appSettings.Value;
-            _hostEnvironment = hostEnvironment;
         }
 
 
@@ -54,7 +58,12 @@ namespace webapi.Services
 
         public IEnumerable<UserInFo> GetAll()
         {
-            return _context.UserInFos.ToList();
+            return (IEnumerable<UserInFo>)_context.UserInFos.Include(s => s.RoleNavigation).Select(s => new UserInFo { Id = s.Id, UserPhone = s.UserPhone, UserName = s.UserName, UserFullName = s.UserFullName, UserEmail = s.UserEmail, UserAddress = s.UserAddress, UserAge = s.UserAge, UserAvatar = s.UserAvatar, Role = s.RoleNavigation.Role1 }).ToList();
+        }
+
+        public IEnumerable<Role> GetAllRoles()
+        {
+            return _context.Roles.ToList();
         }
 
         public UserInFo GetById(string id)
@@ -89,6 +98,28 @@ namespace webapi.Services
             _context.SaveChanges();
         }
 
+        public void UpdateAvatar(string id, string url)
+        {
+            UserInFo foundUser = GetById(id);
+            foundUser.UserAvatar = url;
+            _context.UserInFos.Update(foundUser);
+            _context.SaveChanges();
+        }
 
+        public void AddNewUser(UserInFo user)
+        {
+            if (_context.UserInFos.Any(x => x.UserEmail == user.UserEmail))
+            {
+                throw new AppException("User with email address: " + user.UserEmail + "already exists");
+            }
+            if (_context.UserInFos.Any(x => x.UserName == user.UserName))
+            {
+                throw new AppException("User with user name: " + user.UserName + "already exists");
+            }
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword("12345");
+            user.UserPassword = hashedPassword;
+            _context.UserInFos.Add(user);
+            _context.SaveChanges();
+        }
     }
 }

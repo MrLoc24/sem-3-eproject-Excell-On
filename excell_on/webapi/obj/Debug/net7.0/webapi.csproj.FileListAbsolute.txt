@@ -142,3 +142,7 @@ C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.genruntimeconfig.cache
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\webapi.pdb
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\ref\webapi.dll
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

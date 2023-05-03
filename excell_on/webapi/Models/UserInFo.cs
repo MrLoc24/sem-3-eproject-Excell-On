@@ -16,9 +16,6 @@ namespace webapi.Models
         public string? UserAvatar { get; set; }
         public string? UserFullName { get; set; }
         public string? Role { get; set; }
-        [NotMapped]
-        public IFormFile ImageFile { get; set; }
-
         public virtual Role? RoleNavigation { get; set; }
     }
 }

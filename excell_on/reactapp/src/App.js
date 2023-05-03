@@ -14,7 +14,6 @@ const DefaultCustomerLayout = React.lazy(() => import('./layout/DefaultCustomerL
 
 // Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'))
-const Register = React.lazy(() => import('./views/pages/register/Register'))
 
 class App extends Component {
   render() {
@@ -23,7 +22,6 @@ class App extends Component {
         <Suspense fallback={loading}>
           <Routes>
             <Route exact path="/admin/login" name="Login Page" element={<Login />} />
-            <Route exact path="/register" name="Register Page" element={<Register />} />
             <Route exact path="/admin/*" name="Admin" element={<DefaultLayout />} />
             <Route exact path="*" name="Home" element={<DefaultCustomerLayout />} />
           </Routes>
