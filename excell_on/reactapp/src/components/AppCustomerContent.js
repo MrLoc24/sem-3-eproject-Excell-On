@@ -7,7 +7,7 @@ import routesCustomer from '../routesCustomer'
 
 const AppCustomerContent = () => {
   return (
-    <CContainer lg>
+    <CContainer fluid className='customer-content'>
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
           {routesCustomer.map((route, idx) => {

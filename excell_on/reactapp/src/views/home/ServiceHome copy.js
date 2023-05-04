@@ -19,20 +19,20 @@ const ServiceHome = () => {
   return (
     <>
       <div className="container-fluid d-flex justify-content-center">
-        <div className="row pt-2">
+        <div className="row">
           {/* Card image */}
           {serviceCard.map((ser, idx) => (
-            <div class="card service-card mx-4 text-center" key={idx}>
-              <img class="card-img-top" src="image/bg-1.jpg" alt={idx} />
-              <div class="card-body d-flex flex-column justify-content-between">
-                <div>
-                  <h5 class="card-title">{ser.serviceName}</h5>
-                  <p class="card-text">{ser.description}</p>
+            <div className="col-md-4" key={idx}>
+              <div className="card text-center">
+                <div className="overflow">
+                  <img src="/image/tlemarket.jpg" className="card-img-top"></img>
                 </div>
-                <div>
-                  <a href="#" class="btn btn-primary">
-                    Learn More
+                <div className="card-body text-dark">
+                  <a href="#" className="btn btn-outline-success">
+                    Go to details
                   </a>
+                  <h4 className="card-title">{ser.serviceName}</h4>
+                  <p className="card-text text-secondary">{ser.description}</p>
                 </div>
               </div>
             </div>

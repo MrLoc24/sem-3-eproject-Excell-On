@@ -48,13 +48,14 @@ const Login = () => {
               <CCard className="p-4">
                 <CCardBody>
                   <form onSubmit={handleLogin}>
-                    <h1>Login</h1>
+                    <h2>Login</h2>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <input
+                        className='form-control'
                         name="username"
                         type="text"
                         placeholder="Username"
@@ -67,6 +68,7 @@ const Login = () => {
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <input
+                        className='form-control'
                         name="password"
                         type="password"
                         placeholder="Password"
@@ -76,7 +78,7 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <button type="submit" color="primary" className="px-4">
+                        <button type="submit" color="primary" className="btn btn-primary px-4">
                           Login
                         </button>
                       </CCol>
@@ -98,7 +100,7 @@ const Login = () => {
                       tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                     <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
+                      <CButton className="btn btn-outline-primary mt-3" active tabIndex={-1}>
                         Register Now!
                       </CButton>
                     </Link>

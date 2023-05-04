@@ -2,3 +2,5 @@ C:\Users\loclo\Desktop\FPT\Project_3\excell_on\reactapp\obj\Debug\reactapp.espro
 C:\Users\loclo\Desktop\FPT\Project_3\excell_on\reactapp\obj\Debug\reactapp.esproj.CoreCompileInputs.cache
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\reactapp\obj\Debug\reactapp.esproj.SuggestedBindingRedirects.cache
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\reactapp\obj\Debug\reactapp.esproj.CoreCompileInputs.cache
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\reactapp\obj\Debug\reactapp.esproj.SuggestedBindingRedirects.cache
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\reactapp\obj\Debug\reactapp.esproj.CoreCompileInputs.cache

@@ -1,1 +1,43 @@
 // Here you can add other styles
+.customer-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.navbar {
+  --cui-navbar-padding-x: 0;
+  --cui-navbar-padding-y: 0;
+}
+
+.nav-link {
+  font-size: 20px;
+  color: $primary;
+}
+
+.navbar-nav {
+  --cui-nav-link-hover-color: #0dcaf0;
+}
+
+.btn-primary {
+  --cui-btn-hover-color: #087990;
+  --cui-btn-hover-bg: #ffffff;
+  --cui-btn-hover-border-color: #21869b;
+}
+
+.btn-outline-primary {
+  --cui-btn-hover-color: #ffffff;
+}
+
+// Intro section
+.intro-section {
+  background-image: linear-gradient(rgb(8, 121, 144, 0.5), rgb(8, 121, 144, 0.5)),
+    url('../assets/images/bg.jpg');
+  background-position: center;
+  color: white;
+  text-align: center;
+}
+
+// Card Section
+.service-card {
+  
+}
