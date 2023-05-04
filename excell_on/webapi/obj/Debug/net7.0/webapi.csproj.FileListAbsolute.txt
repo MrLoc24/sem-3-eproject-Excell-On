@@ -74,3 +74,13 @@ C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.pdb
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.genruntimeconfig.cache
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\ref\webapi.dll
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.csproj.AssemblyReference.cache
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.AssemblyInfoInputs.cache
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.AssemblyInfo.cs
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.csproj.CoreCompileInputs.cache
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.MvcApplicationPartsAssemblyInfo.cs
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.MvcApplicationPartsAssemblyInfo.cache
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.dll
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\refint\webapi.dll
+D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.pdb
