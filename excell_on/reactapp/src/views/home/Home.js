@@ -31,9 +31,9 @@ const Home = () => {
   return (
     <>
       {myCompany.map((company, idx) => (
-        <div key={idx} className="container mt-5">
-          <div className="w3l-banner pt-5">
-            <div className="container">
+        <div key={idx} className="container-fluid">
+        {/* Carousel */}
+            <div className="container px-5">
               <div className="row">
                 <div className="col-xl-6 banner-left">
                   <h3 className="text-black mb-3 title">
