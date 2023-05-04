@@ -1,4 +1,14 @@
 // Here you can add other styles
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+body{
+  color: $primary-dark
+}
+
+.header-spacing{
+  margin-bottom: 7rem !important;
+}
+
 .customer-content {
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -10,7 +20,7 @@
 }
 
 .nav-link {
-  font-size: 20px;
+  font-size: 18px;
   color: $primary;
 }
 
@@ -18,6 +28,7 @@
   --cui-nav-link-hover-color: #0dcaf0;
 }
 
+// Button
 .btn-primary {
   --cui-btn-hover-color: #087990;
   --cui-btn-hover-bg: #ffffff;
@@ -28,6 +39,10 @@
   --cui-btn-hover-color: #ffffff;
 }
 
+.button-spacing{
+  padding: 0.5rem 1rem !important;
+}
+
 // Intro section
 .intro-section {
   background-image: linear-gradient(rgb(8, 121, 144, 0.5), rgb(8, 121, 144, 0.5)),
@@ -35,9 +50,4 @@
   background-position: center;
   color: white;
   text-align: center;
-}
-
-// Card Section
-.service-card {
-  
 }

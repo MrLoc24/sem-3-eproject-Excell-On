@@ -4,7 +4,7 @@ import { AppCustomerHeader, AppCustomerFooter, AppCustomerContent } from '../com
 const DefaultCustomerLayout = () => {
   return (
     <div>
-      <div className='mb-5'>
+      <div className='header-spacing'>
         <AppCustomerHeader />
       </div>
       <AppCustomerContent />

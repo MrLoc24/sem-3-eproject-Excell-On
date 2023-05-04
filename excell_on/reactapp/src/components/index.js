@@ -10,6 +10,7 @@ import DocsExample from './DocsExample'
 import AppCustomerFooter from './AppCustomerFooter'
 import AppCustomerHeader from './AppCustomerHeader'
 import AppCustomerContent from './AppCustomerContent'
+import { ContactSection } from './ContactSection'
 export {
   AppBreadcrumb,
   AppContent,
@@ -23,4 +24,5 @@ export {
   AppCustomerFooter,
   AppCustomerHeader,
   AppCustomerContent,
+  ContactSection
 }
