@@ -28,9 +28,6 @@ namespace webapi.Models
         public virtual DbSet<StaffOrderDetail> StaffOrderDetails { get; set; } = null!;
         public virtual DbSet<UserInFo> UserInFos { get; set; } = null!;
         public virtual DbSet<staff> staff { get; set; } = null!;
-
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Banking>(entity =>
