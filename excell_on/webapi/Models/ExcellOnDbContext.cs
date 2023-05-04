@@ -29,17 +29,7 @@ namespace webapi.Models
         public virtual DbSet<UserInFo> UserInFos { get; set; } = null!;
         public virtual DbSet<staff> staff { get; set; } = null!;
 
-<<<<<<< HEAD
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= .\\ELIZABETH; Initial Catalog= Excell-On-Db; User ID = sa; Password = 1 ; Integrated Security=True; Trusted_Connection=true ; TrustServerCertificate=True");
-            }
-        }
-=======
->>>>>>> e88e371525f2814f3e8e1133ffef2d8e3c24c790
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
