@@ -41,7 +41,7 @@ const Accordion = () => {
     },
     {
       name: 'Status',
-      selector: (row) => row.deleted,
+      selector: (row) => (row.deleted ? 'Deleted' : 'Active'),
       sortable: true,
     },
     {

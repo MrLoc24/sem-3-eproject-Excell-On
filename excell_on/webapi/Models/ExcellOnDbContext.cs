@@ -28,6 +28,7 @@ namespace webapi.Models
         public virtual DbSet<StaffOrderDetail> StaffOrderDetails { get; set; } = null!;
         public virtual DbSet<UserInFo> UserInFos { get; set; } = null!;
         public virtual DbSet<staff> staff { get; set; } = null!;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -41,6 +42,8 @@ namespace webapi.Models
 =======
 >>>>>>> e88e371525f2814f3e8e1133ffef2d8e3c24c790
 
+=======
+>>>>>>> refs/remotes/origin/main
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Banking>(entity =>
