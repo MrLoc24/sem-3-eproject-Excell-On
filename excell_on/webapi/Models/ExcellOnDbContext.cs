@@ -29,6 +29,7 @@ namespace webapi.Models
         public virtual DbSet<UserInFo> UserInFos { get; set; } = null!;
         public virtual DbSet<staff> staff { get; set; } = null!;
 
+<<<<<<< HEAD
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -37,6 +38,8 @@ namespace webapi.Models
                 optionsBuilder.UseSqlServer("Server= .\\ELIZABETH; Initial Catalog= Excell-On-Db; User ID = sa; Password = 1 ; Integrated Security=True; Trusted_Connection=true ; TrustServerCertificate=True");
             }
         }
+=======
+>>>>>>> e88e371525f2814f3e8e1133ffef2d8e3c24c790
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

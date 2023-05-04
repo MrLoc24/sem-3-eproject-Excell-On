@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webapi.Models
 {
@@ -15,7 +16,6 @@ namespace webapi.Models
         public string? UserAvatar { get; set; }
         public string? UserFullName { get; set; }
         public string? Role { get; set; }
-
         public virtual Role? RoleNavigation { get; set; }
     }
 }

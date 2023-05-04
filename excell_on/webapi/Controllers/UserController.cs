@@ -38,6 +38,13 @@ namespace webapi.Controllers
 
             return Ok(response);
         }
+        [Authorize("Admin", "HR")]
+        [HttpGet("Roles")]
+        public IActionResult GetRoles()
+        {
+            var roles = _userService.GetAllRoles();
+            return Ok(new { status = "ok", message = "", responseObject = roles });
+        }
 
         [Authorize("Admin", "HR")]
         [HttpGet]
@@ -86,6 +93,35 @@ namespace webapi.Controllers
             }
             return Ok(new { message = "Profile Update" });
         }
+
+        [HttpPut("UpdateAvatar/{id}")]
+        public IActionResult UpdateAvatar(string id, string url)
+        {
+            try
+            {
+                _userService.UpdateAvatar(id, url);
+            }
+            catch (Exception e)
+            {
+                return Ok(new { status = "fail", message = e.Message });
+            }
+            return Ok(new { message = "Avatar Update" });
+        }
+
+        [HttpPost("AddNew"), Authorize("Admin", "HR")]
+        public IActionResult AddNew(UserInFo user)
+        {
+            try
+            {
+                _userService.AddNewUser(user);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(new { message = "New user add" });
+        }
+
 
     }
 }

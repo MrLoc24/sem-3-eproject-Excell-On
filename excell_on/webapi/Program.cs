@@ -15,10 +15,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<ExcellOnDbContext>(opt => {
+builder.Services.AddDbContext<ExcellOnDbContext>(opt =>
+{
     opt.UseSqlServer(builder.Configuration.GetConnectionString("con"));
     opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 }
@@ -58,6 +61,7 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IMyCompanyService, MyCompanyService>();
+builder.Services.AddScoped<IStaffService, StaffService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -71,6 +75,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
 
 app.UseRouting();
 

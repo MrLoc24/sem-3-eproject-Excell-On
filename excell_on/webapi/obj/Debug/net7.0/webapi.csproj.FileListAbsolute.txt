@@ -142,6 +142,7 @@ C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.genruntimeconfig.cache
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\webapi.pdb
 C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\ref\webapi.dll
+<<<<<<< HEAD
 D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\appsettings.Development.json
 D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\appsettings.json
 D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\webapi.exe
@@ -214,3 +215,9 @@ D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\De
 D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.pdb
 D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\webapi.genruntimeconfig.cache
 D:\Code\ReactJS\eProjectIIITest\sem-3-eproject-Excell-On\excell_on\webapi\obj\Debug\net7.0\ref\webapi.dll
+=======
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\loclo\Desktop\sem-3-eproject-Excell-On\excell_on\webapi\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+>>>>>>> e88e371525f2814f3e8e1133ffef2d8e3c24c790
