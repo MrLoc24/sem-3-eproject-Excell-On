@@ -38,6 +38,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Staff',
+        to: 'manage/staff',
+      },
+      {
+        component: CNavItem,
         name: 'My Profile',
         to: 'manage/myprofile/' + sessionStorage.getItem('id'),
       },

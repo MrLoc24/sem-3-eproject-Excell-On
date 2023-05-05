@@ -38,9 +38,7 @@ const Home = () => {
                 </h3>
                 <p className="lead text-black">{company.myTarget}</p>
                 <div className="mt-5">
-                  <a className="btn btn-primary">
-                    View Our Service
-                  </a>
+                  <a className="btn btn-primary">View Our Service</a>
                 </div>
               </div>
               <div className="col-lg-6 w3l-features-photo-7_top-right mt-lg-0 mt-sm-5 mt-4">
@@ -53,9 +51,9 @@ const Home = () => {
             </div>
           </div>
           {/* Intro Section */}
-          <div class="intro-section p-5 overlay">
-            <h5 class="card-title">{company.title}</h5>
-            <p class="card-text w-75 mx-auto">{company.myTarget}</p>
+          <div className="intro-section p-5 overlay">
+            <h5 className="card-title">{company.title}</h5>
+            <p className="card-text w-75 mx-auto">{company.myTarget}</p>
           </div>
           {/* </div> */}
         </div>

@@ -9,6 +9,7 @@ namespace webapi.Services
     public interface IStaffService
     {
         IEnumerable<staff> GetAll();
+        IEnumerable<Department> GetAllDepartments();
         staff GetById(int id);
         void UpdateProfile(staff staff);
         void UpdateAvatar(string id, string url);
@@ -31,7 +32,12 @@ namespace webapi.Services
 
         public IEnumerable<staff> GetAll()
         {
-            return _context.staff.Include(s => s.Department).Include(c => c.Service).Include(x=>x.StaffOrderDetails).ToList();
+            return _context.staff.Include(s => s.Department).Include(c => c.Service).Include(x => x.StaffOrderDetails).ToList();
+        }
+
+        public IEnumerable<Department> GetAllDepartments()
+        {
+            return _context.Departments.ToList();
         }
 
         public staff GetById(int id)
