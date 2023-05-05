@@ -17,12 +17,11 @@ const ServiceHome = () => {
     })
   }, [])
   return (
-    <>
       <div className="container-fluid d-flex justify-content-center">
         <div className="row pt-2">
           {/* Card image */}
           {serviceCard.map((ser, idx) => (
-            <div class="card service-card mx-4 text-center" key={idx}>
+            <div class="card card-service mx-4 text-center" key={idx}>
               <img class="card-img-top" src="image/bg-1.jpg" alt={idx} />
               <div class="card-body d-flex flex-column justify-content-between">
                 <div>
@@ -39,7 +38,6 @@ const ServiceHome = () => {
           ))}
         </div>
       </div>
-    </>
   )
 }
 export default ServiceHome
