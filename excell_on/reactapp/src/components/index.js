@@ -11,6 +11,8 @@ import AppCustomerFooter from './AppCustomerFooter'
 import AppCustomerHeader from './AppCustomerHeader'
 import AppCustomerContent from './AppCustomerContent'
 import { ContactSection } from './ContactSection'
+import {Breadcrumb} from './Breadcrumb'
+
 export {
   AppBreadcrumb,
   AppContent,
@@ -24,5 +26,6 @@ export {
   AppCustomerFooter,
   AppCustomerHeader,
   AppCustomerContent,
-  ContactSection
+  ContactSection,
+  Breadcrumb
 }

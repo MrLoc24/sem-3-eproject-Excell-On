@@ -11,7 +11,7 @@ export default function ContactSection() {
                         <h5 className="card-title"><i className="bi bi-headset"></i>Contact Us</h5>
                         <p className="card-text">With supporting text below as a natural lead-in to additional content.
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius ut culpa praesentium, </p>
-                        <a href="#" className="btn btn-primary">Read More</a>
+                        <a href="#/contact" className="btn btn-primary">Read More</a>
                     </div>
                 </div>
             </div>
