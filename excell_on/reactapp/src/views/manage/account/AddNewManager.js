@@ -14,7 +14,7 @@ const AddNewManager = () => {
   const [roleMap, setRoleMap] = useState([])
   const [data, setData] = useState([])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     const formData = new FormData()
     formData.append('file', uploadFile)
@@ -24,18 +24,16 @@ const AddNewManager = () => {
       .post('https://api.cloudinary.com/v1_1/locnguyen2409/image/upload', formData)
       .then((response) => {
         setUserAvatar(response.data.secure_url)
-        setData(
-          (data = {
-            userName,
-            userFullName,
-            userEmail,
-            userPhone,
-            userAge,
-            userAddress,
-            userAvatar,
-            role,
-          }),
-        )
+        setData({
+          userName,
+          userFullName,
+          userEmail,
+          userPhone,
+          userAge,
+          userAddress,
+          userAvatar,
+          role,
+        })
       })
       .catch((error) => {
         console.log(error)
