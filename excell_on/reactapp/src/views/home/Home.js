@@ -52,7 +52,7 @@ const Home = () => {
             </div>
           </div>
           {/* Intro Section */}
-          <div class="intro-section p-5">
+          <div class="intro-section p-5 overlay">
             <h5 class="card-title">{company.title}</h5>
             <p class="card-text w-75 mx-auto">{company.myTarget}</p>
           </div>
@@ -68,11 +68,11 @@ const Home = () => {
       {/* About Section */}
       <div>
         <div class="intro-section p-5">
-          <div className='row justify-content-center'>
-            <div className='col-4'>
-              <img src='image/about.png' width={300}/>
+          <div className="row justify-content-center">
+            <div className="col-4">
+              <img src="image/about.png" width={300} />
             </div>
-            <div className='col-4 d-flex flex-column justify-content-center'>
+            <div className="col-4 d-flex flex-column justify-content-center">
               <h5 class="card-title text-start p-1">About Us</h5>
               <p class="card-text w-75 text-start">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente tempore iusto

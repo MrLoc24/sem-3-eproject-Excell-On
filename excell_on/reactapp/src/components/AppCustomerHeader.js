@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import ServiceService from 'src/service/ServiceService'
+<<<<<<< HEAD
 import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap'
 import { CartUser } from './CartUser'
 import { LoginButton } from './LoginButton'
 
+=======
+import { Button, Nav, Navbar, NavDropdown, Container } from 'react-bootstrap'
+>>>>>>> 43f9cca5fc0d65fbe7132556b045c7fb0bea0061
 const AppCustomerHeader = () => {
   const [services, setService] = useState([])
   const [customer, setCustomer] = useState({})
@@ -47,8 +51,19 @@ const AppCustomerHeader = () => {
             <Nav.Link href="#/about">About Us</Nav.Link>
             <Nav.Link href="#/contact">Contact</Nav.Link>
           </Nav>
+<<<<<<< HEAD
           {show && <CartUser username={customer.customerName || 'No name'} />}
           {!show && <LoginButton />}
+=======
+          <Nav>
+            <Nav.Link href="#/login">
+              <Button variant="primary">Login</Button>
+            </Nav.Link>
+            <Nav.Link eventKey={2} href="#/register">
+              <Button variant="outline-primary">Register</Button>
+            </Nav.Link>
+          </Nav>
+>>>>>>> 43f9cca5fc0d65fbe7132556b045c7fb0bea0061
         </Navbar.Collapse>
       </Container>
     </Navbar>

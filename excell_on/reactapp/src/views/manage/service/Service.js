@@ -7,15 +7,7 @@ const Accordion = () => {
   const [serviceData, setServiceData] = useState([])
   useEffect(() => {
     ServiceService.GetAll().then((response) => {
-      const data = response.responseObject.map((ser) => {
-        return {
-          serviceName: ser.serviceName,
-          id: ser.id,
-          price: ser.servicePrice,
-        }
-      })
-      let serviceData = data
-      setServiceData(serviceData)
+      setServiceData(response.responseObject)
     })
   }, [])
   let navigate = useNavigate()
@@ -25,9 +17,8 @@ const Accordion = () => {
   }
   const columns = [
     {
-      name: 'Id',
-      selector: (row) => row.id,
-      sortable: true,
+      name: 'Image',
+      cell: (row) => <img src={row.serviceImage} width={60} className="container-fluid" />,
     },
     {
       name: 'Service',
@@ -35,8 +26,16 @@ const Accordion = () => {
       sortable: true,
     },
     {
+      name: 'Service',
+      cell: (row) => (
+        <p className="container-fluid" width={100}>
+          {row.serviceDescription}
+        </p>
+      ),
+    },
+    {
       name: 'Price',
-      selector: (row) => row.price,
+      selector: (row) => row.servicePrice,
       sortable: true,
     },
     {

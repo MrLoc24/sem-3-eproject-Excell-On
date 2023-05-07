@@ -17,11 +17,18 @@ namespace webapi.Controllers
             _staffService = staffService;
         }
 
-        [HttpGet, AllowAnonymous]
+        [HttpGet, Authorize]
         public IActionResult GetAll()
         {
             var staff = _staffService.GetAll();
             return Ok(new { message = "Ok", responseObject = staff });
+        }
+        [HttpGet("Department"), Authorize]
+        public IActionResult GetAllDepartment()
+        {
+            var der = _staffService.GetAllDepartments();
+            return Ok(new { message = "Ok", responseObject = der });
+
         }
     }
 }
