@@ -3,7 +3,7 @@ import React from 'react'
 //User Front-end
 const Home = React.lazy(() => import('./views/home/Home'))
 const About = React.lazy(() => import('./views/about/About'))
-const Login = React.lazy(() => import('./views/pages/login/Login'))
+const Login = React.lazy(() => import('./views/pages/login/LoginCustomer'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Contact = React.lazy(() => import('./views/contact/Contact'))
 

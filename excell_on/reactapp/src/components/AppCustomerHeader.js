@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import ServiceService from 'src/service/ServiceService'
-import {Button, Nav, Navbar, NavDropdown, Container} from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap'
+import { CartUser } from './CartUser'
+import { LoginButton } from './LoginButton'
+
 const AppCustomerHeader = () => {
   const [services, setService] = useState([])
+  const [customer, setCustomer] = useState({})
+  const [show, setShow] = useState(false)
   useEffect(() => {
     ServiceService.GetAll().then((response) => {
-      const data = response.responseObject.map((ser) => {
-        return {
-          serviceName: ser.serviceName,
-          id: ser.id,
-        }
-      })
-      let services = data
-      setService(services)
+      setService(response.responseObject)
     })
   }, [])
 
+  useEffect(() => {
+    if (sessionStorage.getItem('customer')) {
+      setCustomer(JSON.parse(sessionStorage.getItem('customer')))
+      setShow(true)
+    }
+  }, [])
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="white" variant="white" fixed="top" className='mb-5'>
+    <Navbar collapseOnSelect expand="lg" bg="white" variant="white" fixed="top" className="mb-5">
       <Container>
         <Navbar.Brand href="/">
-        <img
-              src="image/Logo.svg"
-              width="200"
-              height="80"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />
+          <img
+            src="image/Logo.svg"
+            width="200"
+            height="80"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -42,14 +47,8 @@ const AppCustomerHeader = () => {
             <Nav.Link href="#/about">About Us</Nav.Link>
             <Nav.Link href="#/contact">Contact</Nav.Link>
           </Nav>
-          <Nav>
-            <Nav.Link href="#/login">
-              <Button variant='primary'>Login</Button>
-            </Nav.Link>
-            <Nav.Link eventKey={2} href="#/register">
-              <Button variant='outline-primary'>Register</Button>
-            </Nav.Link>
-          </Nav>
+          {show && <CartUser username={customer.customerName || 'No name'} />}
+          {!show && <LoginButton />}
         </Navbar.Collapse>
       </Container>
     </Navbar>
