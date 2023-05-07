@@ -26,7 +26,7 @@ const AppCustomerHeader = () => {
       <Container>
         <Navbar.Brand href="/">
           <img
-            src="image/Logo.svg"
+            src="https://res.cloudinary.com/locnguyen2409/image/upload/v1683466970/Logo_vqh3kn.svg"
             width="200"
             height="80"
             className="d-inline-block align-top"
