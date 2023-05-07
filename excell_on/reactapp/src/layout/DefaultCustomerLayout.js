@@ -8,7 +8,7 @@ const DefaultCustomerLayout = () => {
         <AppCustomerHeader />
       </div>
       <AppCustomerContent />
-      <div>
+      <div className='footer-background'>
         <AppCustomerFooter />
       </div>
     </div>
