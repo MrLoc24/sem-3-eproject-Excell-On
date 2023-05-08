@@ -11,10 +11,10 @@ export default function CartUser(props) {
   }
 
   useEffect(() => {
-    let object = JSON.parse(sessionStorage.getItem('customer'));
+    let object = JSON.parse(sessionStorage.getItem('customer'))
     CustomerService.GetById(object.id).then((response) => {
       setCustomer(response)
-      console.log(customer);
+      console.log(customer)
     })
   }, [])
 
@@ -22,18 +22,14 @@ export default function CartUser(props) {
     <>
       <Nav>
         <Nav.Link href="#/cart">
-            <i class="bi bi-cart4 fs-3"></i>
+          <i class="bi bi-cart4 fs-3"></i>
         </Nav.Link>
-        <Nav.Link href='#/profile'>
-          <img src={customer.customerAvatar} width={80} alt={customer.customerName}/>
+        <Nav.Link href="#/profile">
+          <img src={customer.customerAvatar} width={80} alt={customer.customerName} />
         </Nav.Link>
         <NavDropdown className="my-auto" title={props.username} id="collasible-nav-dropdown">
-          <NavDropdown.Item>
-            <Nav.Link href="#/profile">Profile</Nav.Link>
-          </NavDropdown.Item>
-          <NavDropdown.Item>
-            <Button onClick={handleLogout}>Logout</Button>
-          </NavDropdown.Item>
+          <NavDropdown.Item href="#/profile">Profile</NavDropdown.Item>
+          <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Nav>
     </>
