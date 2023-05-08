@@ -14,14 +14,14 @@ const ServiceHome = () => {
         {/* Card image */}
         {serviceCard.map((ser, idx) => (
           <div className="card card-service mx-4 text-center" key={idx}>
-            <img className="card-img-top" src={ser.serviceImage} alt={idx} />
+            <img className="card-img-top" src={ser.serviceImage} alt={idx} height={280}/>
             <div className="card-body d-flex flex-column justify-content-between">
               <div>
                 <h5 className="card-title">{ser.serviceName}</h5>
                 <p className="card-text">{ser.serviceDescription}</p>
               </div>
               <div>
-                <a href="#" className="btn btn-primary">
+                <a href={`#/service/${ser.id}`} className="btn btn-primary">
                   Learn More
                 </a>
               </div>

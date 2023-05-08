@@ -70,7 +70,7 @@ const Home = () => {
         <div class="intro-section p-5">
           <div className="row justify-content-center">
             <div className="col-4">
-              <img src="image/about.png" width={300} />
+              <img src="image/about.png" width={300}/>
             </div>
             <div className="col-4 d-flex flex-column justify-content-center">
               <h5 class="card-title text-start p-1">About Us</h5>

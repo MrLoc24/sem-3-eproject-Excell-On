@@ -35,7 +35,7 @@ namespace webapi.Services
 
         public AuthenticateResponseCustomer Authenticate(AuthenticateRequest model)
         {
-            var customer = _context.Customers.FirstOrDefault(c => c.CustomerName.Equals(model.UserName));
+            var customer = _context.Customers.FirstOrDefault(c => c.CustomerUserName.Equals(model.UserName));
             Console.WriteLine(customer);
             // validate
             if (customer == null || !BCrypt.Net.BCrypt.Verify(model.Password, customer.CustomerPassword))
