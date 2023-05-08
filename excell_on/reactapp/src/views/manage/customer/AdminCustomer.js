@@ -21,19 +21,15 @@ const AdminCustomer = () => {
   }
   const columns = [
     {
-      cell: (row) => (
-        <button className="btn btn-primary" onClick={(e) => handleButtonClick(e, row.id)}>
-          Detail
-        </button>
+      name: 'Image',
+      selector: (row) => (
+        <img
+          src={row.customerAvatar}
+          className="rounded-circle"
+          style={{ width: 50, height: 50 }}
+        />
       ),
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
-    },
-    {
-      name: 'Id',
-      selector: (row) => row.id,
-      sortable: true,
+      width: '120px',
     },
     {
       name: 'Name',
@@ -49,6 +45,16 @@ const AdminCustomer = () => {
       name: 'Phone',
       selector: (row) => row.customerPhone,
       sortable: true,
+    },
+    {
+      cell: (row) => (
+        <button className="btn btn-primary" onClick={(e) => handleButtonClick(e, row.id)}>
+          Detail
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
     },
   ]
   return (

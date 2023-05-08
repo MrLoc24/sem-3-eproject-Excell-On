@@ -23,6 +23,8 @@ namespace webapi.Services
         void UpdateAvatar(string id, string url);
 
         void AddNewUser(UserInFo user);
+
+        void Delete(string id);
     }
 
     public class UserService : IUserService
@@ -119,6 +121,13 @@ namespace webapi.Services
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword("12345");
             user.UserPassword = hashedPassword;
             _context.UserInFos.Add(user);
+            _context.SaveChanges();
+        }
+
+        public void Delete(string id)
+        {
+            var user = GetById(id) ?? throw new Exception("Not found");
+            _context.UserInFos.Remove(user);
             _context.SaveChanges();
         }
     }
