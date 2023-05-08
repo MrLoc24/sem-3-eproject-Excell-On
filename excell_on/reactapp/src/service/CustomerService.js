@@ -11,6 +11,10 @@ class CustomerService {
     })
     return response.data
   }
+  GetById = async(id) => {
+    const response = await axios.get(URL + '/customer/' + id)
+    return response.data.responseObject
+  }
 }
 
 export default new CustomerService()
