@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\ReactJS\\eProjectIIITest\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj": {}
+    "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "D:\\Code\\ReactJS\\eProjectIIITest\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj": {
+    "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\ReactJS\\eProjectIIITest\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj",
+        "projectUniqueName": "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "D:\\Code\\ReactJS\\eProjectIIITest\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\ReactJS\\eProjectIIITest\\sem-3-eproject-Excell-On\\excell_on\\webapi\\obj\\",
+        "projectPath": "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\webapi.csproj",
+        "packagesPath": "C:\\Users\\loclo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\loclo\\Desktop\\sem-3-eproject-Excell-On\\excell_on\\webapi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\loclo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -104,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

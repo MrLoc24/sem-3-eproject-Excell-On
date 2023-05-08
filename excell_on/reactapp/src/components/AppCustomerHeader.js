@@ -3,8 +3,10 @@ import ServiceService from 'src/service/ServiceService'
 import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap'
 import { CartUser } from './CartUser'
 import { LoginButton } from './LoginButton'
+import { useNavigate } from 'react-router-dom'
 
 const AppCustomerHeader = () => {
+  let navigate = useNavigate()
   const [services, setService] = useState([])
   const [customer, setCustomer] = useState({})
   const [show, setShow] = useState(false)
