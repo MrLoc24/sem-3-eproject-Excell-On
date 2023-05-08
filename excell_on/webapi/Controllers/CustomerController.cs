@@ -42,6 +42,7 @@ namespace webapi.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
 
         public IActionResult GetById(string id)
         {
