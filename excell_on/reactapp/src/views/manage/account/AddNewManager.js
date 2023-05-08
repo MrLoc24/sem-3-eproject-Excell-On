@@ -9,7 +9,6 @@ const AddNewManager = () => {
   const [userAge, setUserAge] = useState('')
   const [userAddress, setUserAddress] = useState('')
   const [uploadFile, setUploadFile] = useState('')
-  const [userAvatar, setUserAvatar] = useState('')
   const [role, setRole] = useState('')
   const [roleMap, setRoleMap] = useState([])
   const [data, setData] = useState([])
@@ -23,8 +22,8 @@ const AddNewManager = () => {
     axios
       .post('https://api.cloudinary.com/v1_1/locnguyen2409/image/upload', formData)
       .then((response) => {
-        setUserAvatar(response.data.secure_url)
-        setData({
+        let userAvatar = response.data.secure_url
+        UserService.AddNew({
           userName,
           userFullName,
           userEmail,
@@ -33,14 +32,11 @@ const AddNewManager = () => {
           userAddress,
           userAvatar,
           role,
-        })
+        }).then((res) => alert(res.message))
       })
       .catch((error) => {
         console.log(error)
       })
-    if (data.length > 0) {
-      UserService.AddNew(data).then((res) => alert(res.message))
-    }
   }
   useEffect(() => {
     UserService.GetRoles().then((res) => {

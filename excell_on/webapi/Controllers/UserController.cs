@@ -4,8 +4,6 @@ using webapi.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using webapi.Models;
-using webapi.Services;
 
 
 namespace webapi.Controllers
@@ -121,7 +119,20 @@ namespace webapi.Controllers
             }
             return Ok(new { message = "New user add" });
         }
+        [HttpDelete("{id}"), Authorize("Admin", "HR")]
+        public IActionResult Delete(string id)
+        {
+            try
+            {
+                _userService.Delete(id);
+            }
+            catch (Exception e)
+            {
 
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(new { message = "Deleted" });
+        }
 
     }
 }

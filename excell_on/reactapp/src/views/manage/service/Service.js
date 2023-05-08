@@ -15,6 +15,35 @@ const Accordion = () => {
     e.preventDefault()
     navigate(`/admin/manage/service/${id}`)
   }
+  const customStyles = {
+    header: {
+      style: {
+        minHeight: '56px',
+      },
+    },
+    headRow: {
+      style: {
+        borderTopStyle: 'solid',
+        borderTopWidth: '1px',
+      },
+    },
+    headCells: {
+      style: {
+        '&:not(:last-of-type)': {
+          borderRightStyle: 'solid',
+          borderRightWidth: '1px',
+        },
+      },
+    },
+    cells: {
+      style: {
+        '&:not(:last-of-type)': {
+          borderRightStyle: 'solid',
+          borderRightWidth: '1px',
+        },
+      },
+    },
+  }
   const columns = [
     {
       name: 'Image',
@@ -57,7 +86,7 @@ const Accordion = () => {
 
   return (
     <>
-      <DataTable columns={columns} data={serviceData} pagination />
+      <DataTable columns={columns} data={serviceData} pagination customStyles={customStyles} />
     </>
   )
 }

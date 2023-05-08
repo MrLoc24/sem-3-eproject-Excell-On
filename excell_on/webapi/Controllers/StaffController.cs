@@ -6,6 +6,7 @@ using webapi.Services;
 
 namespace webapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StaffController : ControllerBase
@@ -29,6 +30,19 @@ namespace webapi.Controllers
             var der = _staffService.GetAllDepartments();
             return Ok(new { message = "Ok", responseObject = der });
 
+        }
+        [HttpPut("deleteStatus/{id}")]
+        public IActionResult Delete(string id)
+        {
+            try
+            {
+                _staffService.Delete(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(new { message = "Deleted successfully" });
         }
     }
 }

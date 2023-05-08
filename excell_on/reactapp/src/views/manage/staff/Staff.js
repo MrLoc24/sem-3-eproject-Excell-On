@@ -19,6 +19,14 @@ const AdminCustomer = () => {
   if (error) {
     return <Page401 />
   }
+  const handleDeleteClick = (e, id) => {
+    e.preventDefault()
+    confirm('Are you sure you want to delete')
+    StaffService.Delete(id).then((res) => {
+      alert(res.message)
+      window.location.reload()
+    })
+  }
   const columns = [
     {
       name: 'Id',
@@ -46,13 +54,24 @@ const AdminCustomer = () => {
       sortable: true,
     },
     {
+      name: 'Deleted',
+      selector: (row) => (row.deleted ? 'Inactive' : 'Active'),
+      sortable: true,
+    },
+    {
       cell: (row) => (
-        <button className="btn btn-primary" onClick={(e) => handleButtonClick(e, row.id)}>
-          Detail
-        </button>
+        <>
+          <button className="btn btn-primary m-lg-1" onClick={(e) => handleButtonClick(e, row.id)}>
+            Detail
+          </button>
+          <button className="btn btn-danger" onClick={(e) => handleDeleteClick(e, row.id)}>
+            Delete
+          </button>
+        </>
       ),
       ignoreRowClick: true,
       allowOverflow: true,
+      width: '180px',
       button: true,
     },
   ]

@@ -80,6 +80,16 @@ class UserService {
     })
     return response.data
   }
+  Delete = async (id) => {
+    const response = await axios({
+      method: 'DELETE',
+      url: URL + '/user/' + id,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
+      },
+    })
+    return response.data
+  }
 }
 
 export default new UserService()

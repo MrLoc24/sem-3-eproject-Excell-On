@@ -14,6 +14,7 @@ namespace webapi.Services
         void UpdateProfile(staff staff);
         void UpdateAvatar(string id, string url);
         void AddNewStaff(staff staff);
+        void Delete(string id);
     }
     public class StaffService : IStaffService
     {
@@ -53,6 +54,27 @@ namespace webapi.Services
         public void UpdateProfile(staff staff)
         {
             throw new NotImplementedException();
+        }
+        public void Delete(string id)
+        {
+            staff staff = _context.staff.Find(int.Parse(id));
+            try
+            {
+                if (staff != null)
+                {
+                    staff.Deleted = true;
+                    _context.staff.Update(staff);
+                    _context.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Staff not found");
+            }
+            
+            
         }
     }
 }
