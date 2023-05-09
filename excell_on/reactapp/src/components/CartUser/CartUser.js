@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Nav, NavDropdown, Button } from 'react-bootstrap'
+import { Nav, NavDropdown} from 'react-bootstrap'
 import LoginCustomerService from 'src/service/LoginCustomerService'
 import CustomerService from 'src/service/CustomerService'
 
@@ -21,15 +21,15 @@ export default function CartUser(props) {
   return (
     <>
       <Nav>
-        <Nav.Link href="#/cart">
+        <Nav.Link href="/cart" className='d-flex align-items-center'>
           <i class="bi bi-cart4 fs-3"></i>
         </Nav.Link>
-        <Nav.Link href="#/profile">
-          <img src={customer.customerAvatar} width={80} alt={customer.customerName} />
+        <Nav.Link href="/profile" className='px-0'>
+          <img src={customer.customerAvatar} width={50} alt={customer.customerName} className='rounded-circle'/>
         </Nav.Link>
         <NavDropdown className="my-auto" title={props.username} id="collasible-nav-dropdown">
-          <NavDropdown.Item href="#/profile">Profile</NavDropdown.Item>
-          <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+          <NavDropdown.Item href="/profile"><i class="bi bi-gear me-2"></i>Profile</NavDropdown.Item>
+          <NavDropdown.Item onClick={handleLogout}><i class="bi bi-arrow-bar-right me-2"></i>Logout</NavDropdown.Item>
         </NavDropdown>
       </Nav>
     </>

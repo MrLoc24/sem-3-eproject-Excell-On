@@ -11,9 +11,43 @@ class CustomerService {
     })
     return response.data
   }
-  GetById = async(id) => {
-    const response = await axios.get(URL + '/customer/' + id)
+
+  GetById = async (id) => {
+    const customer = JSON.parse(sessionStorage.getItem('customer'))
+    const token = customer.token.replace(/^"(.*)"$/, '$1')
+    const response = await axios.get(URL + '/customer/' + id, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     return response.data.responseObject
+  }
+
+  UpdateProfile = async (id, data) => {
+    const customer = JSON.parse(sessionStorage.getItem('customer'))
+    const token = customer.token.replace(/^"(.*)"$/, '$1')
+    const response = await axios({
+      method: 'put',
+      url: URL + '/customer/updateProfile/' + id,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    })
+    return response.data
+  }
+
+  UpdateAvatar = async (id, data) => {
+    const customer = JSON.parse(sessionStorage.getItem('customer'))
+    const token = customer.token.replace(/^"(.*)"$/, '$1')
+    const response = await axios({
+      method: 'put',
+      url: URL + '/customer/updateAvatar/' + id + '?url=' + data,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data
   }
 }
 

@@ -14,7 +14,7 @@ import { ContactSection } from './ContactSection'
 import {Breadcrumb} from './Breadcrumb'
 import {CartUser} from './CartUser'
 import { LoginButton } from './LoginButton'
-
+import AboutSection from './AboutSection/AboutSection'
 export {
   AppBreadcrumb,
   AppContent,
@@ -31,5 +31,6 @@ export {
   ContactSection,
   Breadcrumb,
   CartUser,
-  LoginButton
+  LoginButton,
+  AboutSection
 }
