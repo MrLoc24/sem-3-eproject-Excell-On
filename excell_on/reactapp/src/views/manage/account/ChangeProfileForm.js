@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import UserService from 'src/service/UserService'
+import { FormInput } from 'src/components'
 
 const ChangProfileForm = () => {
   const { id } = useParams()
@@ -10,6 +11,57 @@ const ChangProfileForm = () => {
       setState(response)
     })
   }, [])
+
+  const inputs = [
+    {
+      label: 'User Name',
+      name: 'userName',
+      value: state.userName,
+      errorMessage: "Username is required",
+      required: true
+    },
+    {
+      label: 'Age',
+      name: 'userAge',
+      value: state.userAge,
+      errorMessage: "Age must be equal or greater than 18",
+      required: true,
+      type: 'number',
+      min: '18'
+    },
+    {
+      label: 'Phone',
+      name: 'userPhone',
+      value: state.userPhone,
+      errorMessage: "Phone is required",
+      required: true
+    },
+    {
+      label: 'Email',
+      name: 'userEmail',
+      value: state.userEmail,
+      errorMessage: "Email is required",
+      required: true,
+      id: 'email'
+    },
+    {
+      label: 'Address',
+      name: 'userAddress',
+      value: state.userAddress,
+      errorMessage: "Address is required",
+      required: true,
+      id: 'adress'
+    },
+    {
+      label: 'Full Name',
+      name: 'userFullName',
+      value: state.userFullName,
+      errorMessage: "Full name is required",
+      required: true,
+      id: 'fullname'
+    }
+  ]
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setState((prevState) => ({
@@ -38,76 +90,16 @@ const ChangProfileForm = () => {
               <!-- form start --> */}
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <div className="card-body">
-            <div className="form-group">
-              <label>User Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="userName"
-                value={state.userName || ''}
-                placeholder="UserName"
+            {inputs.map((item)=>(
+              <FormInput 
+                label={item.label}
+                name={item.name}
+                value={item.value}
                 onChange={handleInputChange}
+                errorMessage={item.errorMessage}
+                {...item}
               />
-            </div>
-            <div className="form-group">
-              <label>Age</label>
-              <input
-                type="number"
-                className="form-control"
-                name="userAge"
-                value={state.userAge || ''}
-                placeholder="Age"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="phone">Phone</label>
-              <input
-                type="number"
-                className="form-control"
-                id="phone"
-                name="userPhone"
-                value={state.userPhone || ''}
-                placeholder="Phone"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="userEmail"
-                value={state.userEmail || ''}
-                placeholder="Email"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="address">Address</label>
-              <input
-                type="text"
-                className="form-control"
-                name="userAddress"
-                id="address"
-                value={state.userAddress || ''}
-                placeholder="Enter address"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="fullName">User Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="userFullName"
-                id="fullName"
-                value={state.userFullName || ''}
-                placeholder="Full name"
-                onChange={handleInputChange}
-              />
-            </div>
+            ))}
           </div>
           {/* <!-- /.card-body --> */}
 
