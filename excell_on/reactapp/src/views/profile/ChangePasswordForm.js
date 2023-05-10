@@ -2,12 +2,11 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
-import { useParams } from 'react-router-dom'
-import UserService from 'src/service/UserService'
-import AuthService from 'src/service/AuthService'
+import CustomerService from 'src/service/CustomerService'
 
 function ChangePasswordForm() {
-  const { id } = useParams()
+  const customer = JSON.parse(sessionStorage.getItem('customer'));
+  const id = customer.id;
   // form validation rules
   const validationSchema = Yup.object().shape({
     password: Yup.string()
@@ -25,10 +24,9 @@ function ChangePasswordForm() {
 
   function onSubmit(data) {
     // display form data on success
-    UserService.ChangePassword(id, data.password)
+    CustomerService.ChangePassword(id, data.password)
       .then((response) => {
         alert(response.message)
-        AuthService.logout()
         window.location.reload()
       })
       .catch(function (error) {

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Nav, NavDropdown} from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import LoginCustomerService from 'src/service/LoginCustomerService'
 import CustomerService from 'src/service/CustomerService'
 
 export default function CartUser(props) {
   const [customer, setCustomer] = useState({})
+  const navigate = useNavigate();
   const handleLogout = () => {
     LoginCustomerService.logout()
+    navigate('/')
     window.location.reload()
   }
 

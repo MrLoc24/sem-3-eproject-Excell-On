@@ -23,6 +23,20 @@ class CustomerService {
     return response.data.responseObject
   }
 
+  ChangePassword = async (id, password) => {
+    const customer = JSON.parse(sessionStorage.getItem('customer'))
+    const token = customer.token.replace(/^"(.*)"$/, '$1')
+    const response = await axios({
+      method: 'put',
+      url: URL + '/customer/changePassword/' + id + '?newPassword=' + password,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {},
+    })
+    return response.data
+  }
+
   UpdateProfile = async (id, data) => {
     const customer = JSON.parse(sessionStorage.getItem('customer'))
     const token = customer.token.replace(/^"(.*)"$/, '$1')
