@@ -17,22 +17,26 @@ const ChangProfileForm = () => {
       label: 'Full Name',
       name: 'customerName',
       value: state.customerName,
-      errorMessage: "Required",
-      required: true
+      errorMessage: "Full Name must be at least 3 letters",
+      required: true,
+      pattern: ".{3,}"
     },
     {
       label: 'Phone Number',
       name: 'customerPhone',
       value: state.customerPhone,
-      errorMessage: "Required",
-      required: true
+      errorMessage: "Phone number is required",
+      required: true,
+      type:'tel'
     },
     {
       label: 'Email',
       name: 'customerEmail',
       value: state.customerEmail,
-      errorMessage: "Required",
-      required: true
+      errorMessage: "Must be email format",
+      required: true,
+      pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$',
+      type: "Email"
     },
   ]
 
