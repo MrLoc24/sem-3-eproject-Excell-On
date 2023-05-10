@@ -29,9 +29,9 @@ namespace webapi.Controllers
             {
                 response = _userService.Authenticate(model);
             }
-            catch
+            catch (Exception e)
             {
-                return Ok(new { status = "fail", message = "", responseObject = "" });
+                return BadRequest(new { status = "fail", message = e.Message, responseObject = "" });
             }
 
             return Ok(response);
