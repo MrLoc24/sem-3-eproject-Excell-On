@@ -51,7 +51,7 @@ namespace webapi.Services
             // validate
             if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.UserPassword))
             {
-                throw new KeyNotFoundException("User not found");
+                throw new KeyNotFoundException("Password or Username incorrect");
             }
             // authentication successful so generate jwt token
             var jwtToken = _jwtUtils.GenerateJwtToken(user);

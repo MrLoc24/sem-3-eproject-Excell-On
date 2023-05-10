@@ -43,7 +43,7 @@ namespace webapi.Services
 
         public staff GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.staff.Include(d => d.Department).Include(s => s.Service).Include(s => s.StaffOrderDetails).FirstOrDefault(c => c.Id.Equals(id));
         }
 
         public void UpdateAvatar(string id, string url)

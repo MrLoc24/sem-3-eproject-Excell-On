@@ -49,7 +49,7 @@ const AppCustomerHeader = () => {
             <Nav.Link href="/about">About Us</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
           </Nav>
-          {show && <CartUser username={customer.customerName || 'No name'}/>}
+          {show && <CartUser username={customer.customerName || 'No name'} />}
           {!show && <LoginButton />}
         </Navbar.Collapse>
       </Container>

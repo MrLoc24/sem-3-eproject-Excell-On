@@ -31,6 +31,21 @@ namespace webapi.Controllers
             return Ok(new { message = "Ok", responseObject = der });
 
         }
+        [HttpGet("{id}"), Authorize("Admin", "HR")]
+
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                var staff = _staffService.GetById(id);
+                return Ok(new { message = staff });
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(new { message = e.Message });
+            }
+        }
         [HttpPut("deleteStatus/{id}")]
         public IActionResult Delete(string id)
         {
