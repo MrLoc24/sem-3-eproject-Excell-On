@@ -1,17 +1,25 @@
 // Here you can add other styles
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
 
-body{
-  color: $primary-dark
+body {
+  color: $primary-dark;
 }
 
-.header-spacing{
+.header-spacing {
   margin-bottom: 7rem !important;
 }
 
 .customer-content {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+
+.short-text {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .navbar {
@@ -39,7 +47,7 @@ body{
   --cui-btn-hover-color: #ffffff;
 }
 
-.button-spacing{
+.button-spacing {
   padding: 0.5rem 1rem !important;
 }
 
@@ -53,7 +61,32 @@ body{
 }
 
 // Footer
-.footer-background{
+.footer-background {
   background-color: #054856;
   color: #ffffff;
+}
+
+// Profile
+
+.side-button {
+  margin-bottom: 2px;
+  padding: 8px 6px;
+  text-align: end;
+  font-size: large;
+  font-weight: 500;
+  border-radius: 25px 0px 0px 25px;
+  box-shadow: #1f1f20 0px 3px;
+  border: 0;
+  background-color: #064c5b;
+  color: rgb(206, 206, 206);
+}
+
+.side-button-active {
+  background: #fff;
+  color: black;
+}
+
+.side-bar {
+  border-radius: 25px;
+  background-color: #032830;
 }

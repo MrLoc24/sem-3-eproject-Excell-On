@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ServiceService from 'src/service/ServiceService'
 import { Breadcrumb } from 'src/components'
+import {ContactSection, AboutSection} from 'src/components'
 
 export default function ServiceCustomer() {
   const params = useParams()
@@ -39,6 +40,8 @@ export default function ServiceCustomer() {
           </div>
         </div>
       </div>
+      <AboutSection/>
+      <ContactSection/>
     </>
   )
 }

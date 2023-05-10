@@ -18,10 +18,10 @@ const ServiceHome = () => {
             <div className="card-body d-flex flex-column justify-content-between">
               <div>
                 <h5 className="card-title">{ser.serviceName}</h5>
-                <p className="card-text">{ser.serviceDescription}</p>
+                <p className="card-text short-text">{ser.serviceDescription}</p>
               </div>
               <div>
-                <a href={`#/service/${ser.id}`} className="btn btn-primary">
+                <a href={`/service/${ser.id}`} className="btn btn-primary mt-3">
                   Learn More
                 </a>
               </div>

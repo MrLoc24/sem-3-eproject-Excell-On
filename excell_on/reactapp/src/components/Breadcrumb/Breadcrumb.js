@@ -9,7 +9,7 @@ export default function Breadcrumb({title}) {
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center bg-transparent">
             <li class="breadcrumb-item">
-              <a href="#/home" class="text-white">
+              <a href="/" class="text-white">
                 Home
               </a>
             </li>

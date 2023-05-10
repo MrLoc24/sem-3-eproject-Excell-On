@@ -7,6 +7,7 @@ const Login = React.lazy(() => import('./views/pages/login/LoginCustomer'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Contact = React.lazy(() => import('./views/contact/Contact'))
 const Service = React.lazy(() => import('./views/serviceCustomer/ServiceCustomer'))
+const Profile = React.lazy(() => import('./views/profile/Profile'))
 
 const routesCustomer = [
   { path: '/', name: 'Home', element: Home, exact: true },
@@ -16,6 +17,7 @@ const routesCustomer = [
   { path: '/register', name: 'Register', element: Register, exact: true },
   { path: '/contact', name: 'Contact', element: Contact, exact: true },
   { path: '/service/:id', name: 'Service', element: Service, exact: true },
+  { path: '/profile', name: 'Profile', element: Profile, exact: true }
 ]
 
 export default routesCustomer

@@ -42,7 +42,6 @@ namespace webapi.Controllers
         }
 
         [HttpGet("{id}")]
-        [AllowAnonymous]
 
         public IActionResult GetById(string id)
         {
@@ -63,6 +62,47 @@ namespace webapi.Controllers
             return Ok(new { message = "New account created" });
         }
 
+        [HttpPut("changePassword/{id}")]
+        public IActionResult ChangePassword(string id, string newPassword)
+        {
+            try
+            {
+                _customerService.ChangePassword(id, newPassword);
+            }
+            catch (Exception e)
+            {
+                return Ok(new { status = "fail", message = e.Message, responseObject = "" });
+            }
+            return Ok(new { message = "Password Update" });
+        }
 
+        [HttpPut("updateProfile/{id}")]
+        public IActionResult UpdateProfile(Customer customer)
+        {
+            try
+            {
+                _customerService.UpdateProfile(customer);
+            }
+            catch (Exception e)
+            {
+                return Ok(new { status = "fail", message = e.Message });
+            }
+            return Ok(new { message = "Profile Update" });
+        }
+
+        [HttpPut("UpdateAvatar/{id}")]
+        public IActionResult UpdateAvatar(string id, string url)
+        {
+            try
+            {
+                _customerService.UpdateAvatar(id, url);
+                return Ok(new { message = "Avatar Update" });
+            }
+            catch (Exception e)
+            {
+                return Ok(new { status = "fail", message = e.Message });
+            }
+            
+        }
     }
 }

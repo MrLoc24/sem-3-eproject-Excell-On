@@ -14,6 +14,9 @@ namespace webapi.Services
         Customer GetById(string Id);
 
         void CreateCustomer(Customer customer);
+        void ChangePassword(string id, string newPassword);
+        void UpdateProfile(Customer customer);
+        void UpdateAvatar(string id, string url);
     }
 
     public class CustomerService : ICustomerService
@@ -71,6 +74,37 @@ namespace webapi.Services
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(customer.CustomerPassword);
             customer.CustomerPassword = hashedPassword;
             _context.Customers.Add(customer);
+            _context.SaveChanges();
+        }
+
+        public void ChangePassword(string id, string newPassword)
+        {
+            Customer foundCustomer = GetById(id);
+            if (BCrypt.Net.BCrypt.Verify(newPassword, foundCustomer.CustomerPassword))
+            {
+                throw new Exception("Same old thing!!!");
+            }
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            foundCustomer.CustomerPassword = hashedPassword;
+            _context.Customers.Update(foundCustomer);
+            _context.SaveChanges();
+        }
+
+        public void UpdateProfile(Customer customer)
+        {
+            Customer foundCustomer = GetById(customer.Id.ToString());
+            foundCustomer.CustomerName = customer.CustomerName;
+            foundCustomer.CustomerPhone = customer.CustomerPhone;
+            foundCustomer.CustomerEmail = customer.CustomerEmail;
+            _context.Customers.Update(foundCustomer);
+            _context.SaveChanges();
+        }
+
+        public void UpdateAvatar(string id, string url)
+        {
+            Customer foundCustomer = GetById(id);
+            foundCustomer.CustomerAvatar = url;
+            _context.Customers.Update(foundCustomer);
             _context.SaveChanges();
         }
     }
