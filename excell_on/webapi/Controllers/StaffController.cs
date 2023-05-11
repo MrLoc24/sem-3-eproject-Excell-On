@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.Authorization;
+using webapi.Models;
 using webapi.Services;
 
 namespace webapi.Controllers
@@ -38,7 +39,7 @@ namespace webapi.Controllers
             try
             {
                 var staff = _staffService.GetById(id);
-                return Ok(new { message = staff });
+                return Ok(staff);
             }
             catch (Exception e)
             {
@@ -58,6 +59,20 @@ namespace webapi.Controllers
                 return BadRequest(new { message = e.Message });
             }
             return Ok(new { message = "Deleted successfully" });
+        }
+
+        [HttpPost]
+        public IActionResult AddNew(staff staffs)
+        {
+            try
+            {
+                _staffService.AddNewStaff(staffs);
+                return Ok(new { message = "Add Success" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
         }
     }
 }

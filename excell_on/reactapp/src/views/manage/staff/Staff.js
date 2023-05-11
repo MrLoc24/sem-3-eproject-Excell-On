@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import StaffService from 'src/service/StaffService'
 import Page401 from 'src/views/pages/page401/Page401'
 import DataTable from 'react-data-table-component'
+import { useNavigate } from 'react-router-dom'
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
+import AddNewStaff from './AddNewStaff'
 
 const AdminCustomer = () => {
   const [state, setState] = useState([])
@@ -27,6 +31,11 @@ const AdminCustomer = () => {
       window.location.reload()
     })
   }
+  let navigate = useNavigate()
+  const handleButtonClick = (e, id) => {
+    e.preventDefault()
+    navigate(`/admin/manage/staff/${id}`)
+  }
   const columns = [
     {
       name: 'Id',
@@ -44,10 +53,16 @@ const AdminCustomer = () => {
       sortable: true,
     },
     {
+      name: 'Department',
+      selector: (row) => (row.department.name ? row.department.name : 'Not available'),
+      sortable: true,
+    },
+    {
       name: 'Email',
       selector: (row) => row.staffEmail,
       sortable: true,
     },
+
     {
       name: 'Phone',
       selector: (row) => row.staffPhone,
@@ -76,9 +91,14 @@ const AdminCustomer = () => {
     },
   ]
   return (
-    <>
-      <DataTable columns={columns} data={state} pagination />
-    </>
+    <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+      <Tab eventKey="home" title="All Staff">
+        <DataTable columns={columns} data={state} pagination />
+      </Tab>
+      <Tab eventKey="addNew" title="Add New">
+        <AddNewStaff />
+      </Tab>
+    </Tabs>
   )
 }
 export default AdminCustomer

@@ -28,7 +28,16 @@ namespace webapi.Services
         }
         public void AddNewStaff(staff staff)
         {
-            throw new NotImplementedException();
+            if (_context.staff.Any(x => x.StaffEmail == staff.StaffEmail))
+            {
+                throw new AppException("User with email address: " + staff.StaffEmail + "already exists");
+            }
+            if (_context.staff.Any(x => x.StaffFullName == staff.StaffFullName))
+            {
+                throw new AppException("User with user name: " + staff.StaffFullName + "already exists");
+            }
+            _context.staff.Add(staff);
+            _context.SaveChanges();
         }
 
         public IEnumerable<staff> GetAll()
@@ -51,9 +60,19 @@ namespace webapi.Services
             throw new NotImplementedException();
         }
 
-        public void UpdateProfile(staff staff)
+        public void UpdateProfile(staff staffs)
         {
-            throw new NotImplementedException();
+            staff foundStaff = GetById(staffs.Id) ?? throw new Exception("Staff not found"); ;
+            foundStaff.StaffGender = staffs.StaffGender;
+            foundStaff.StaffAddress = staffs.StaffAddress;
+            foundStaff.StaffAge = staffs.StaffAge;
+            foundStaff.ServiceId = staffs.ServiceId;
+            foundStaff.StaffEmail = staffs.StaffEmail;
+            foundStaff.StaffPhone = staffs.StaffPhone;
+            foundStaff.DepartmentId = staffs.DepartmentId;
+            foundStaff.StaffFullName = staffs.StaffFullName;
+            _context.staff.Update(foundStaff);
+            _context.SaveChanges();
         }
         public void Delete(string id)
         {
@@ -73,8 +92,8 @@ namespace webapi.Services
 
                 throw new Exception("Staff not found");
             }
-            
-            
+
+
         }
     }
 }

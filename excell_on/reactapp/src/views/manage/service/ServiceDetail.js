@@ -35,7 +35,7 @@ const ServiceDetail = () => {
   return (
     <div className="card card-primary">
       <div className="card-header">
-        <h3 className="card-title">My Profile</h3>
+        <h3 className="card-title">Service {serviceDetail.serviceName || ''}</h3>
       </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="card-body">
@@ -43,6 +43,7 @@ const ServiceDetail = () => {
             <label>
               Service id:
               <input
+                className="form-control"
                 type="text"
                 value={serviceDetail.id || ''}
                 onChange={handleInputChange}
@@ -56,6 +57,7 @@ const ServiceDetail = () => {
             <label>
               Service Name:
               <input
+                className="form-control"
                 type="text"
                 value={serviceDetail.serviceName || ''}
                 onChange={handleInputChange}
@@ -67,6 +69,7 @@ const ServiceDetail = () => {
             <label>
               Service Description
               <textarea
+                className="form-control"
                 type="textarea"
                 value={serviceDetail.serviceDescription || ''}
                 onChange={handleInputChange}
@@ -78,6 +81,7 @@ const ServiceDetail = () => {
             <label>
               Service Price
               <input
+                className="form-control"
                 type="text"
                 value={serviceDetail.servicePrice || ''}
                 onChange={handleInputChange}
@@ -88,7 +92,12 @@ const ServiceDetail = () => {
           <div className="form-group">
             <label>
               Service Status
-              <select name="deleted" onChange={handleInputChange} value={serviceDetail.deleted}>
+              <select
+                className="form-control"
+                name="deleted"
+                onChange={handleInputChange}
+                value={serviceDetail.deleted}
+              >
                 <option value={true}>Yes</option>
                 <option value={false}>No</option>
               </select>
@@ -98,6 +107,7 @@ const ServiceDetail = () => {
             <label>
               Service Name:
               <input
+                className="form-control"
                 type="text"
                 value={serviceDetail.serviceImage || ''}
                 onChange={handleInputChange}
@@ -106,7 +116,7 @@ const ServiceDetail = () => {
             </label>
           </div>
           <div className="form-group">
-            <button className="btn-danger" type="submit">
+            <button className="btn btn-danger mt-lg-3" type="submit">
               UpdateById
             </button>
           </div>
