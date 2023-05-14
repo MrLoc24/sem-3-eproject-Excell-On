@@ -32,6 +32,35 @@ namespace webapi.Controllers
                 return BadRequest(new { message = e.Message });
 
             }
+
+        }
+        [HttpGet("allOrder/{id}"), Authorize]
+        public ActionResult GetById(string id)
+        {
+            try
+            {
+                var order = _orderService.GetById(id);
+                return Ok(order);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+
+        }
+        [HttpGet("order/{id}"), Authorize]
+        public ActionResult GetSingleById(string id)
+        {
+            try
+            {
+                var order = _orderService.GetSingleById(int.Parse(id));
+                return Ok(order);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+
         }
         [HttpPost]
         public ActionResult AddNewOrder(int id)
