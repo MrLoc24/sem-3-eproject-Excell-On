@@ -6,6 +6,11 @@ namespace webapi.Services
     public interface IOrderService
     {
         IEnumerable<Order> GetAll();
+
+        IEnumerable<Order> GetById(string customerId);
+
+        Order GetSingleById(int id);
+
         void AddNewOrder(int customerId);
 
         Order PendingOrder(string customerId);
@@ -26,6 +31,18 @@ namespace webapi.Services
         public IEnumerable<Order> GetAll()
         {
             return _context.Orders.Include(o => o.OrderDetails).Include(c => c.Customer).Include(b => b.Bankings).ToList();
+        }
+
+        public IEnumerable<Order> GetById(string customerId)
+        {
+            var order = _context.Orders.Where(c => c.CustomerId == int.Parse(customerId) && c.OrderStatus != 0).ToList();
+            return order;
+        }
+
+        public Order GetSingleById(int id)
+        {
+            var order = _context.Orders.FirstOrDefault(c => c.Id == id);
+            return order;
         }
 
         public void AddNewOrder(int customerId)
@@ -51,6 +68,7 @@ namespace webapi.Services
 
         public void AddNewOrderDetails(IEnumerable<OrderDetail> orderDetails, double totalCost, string customerId)
         {
+            DateTime dateTime = DateTime.Now;
             var order = PendingOrder(customerId);
             foreach (var detail in orderDetails)
             {
@@ -69,6 +87,7 @@ namespace webapi.Services
             }
             order.OrderStatus = 1;
             order.OrderTotalCost = totalCost;
+            order.OrderDateCreate = dateTime.ToString("G");
             _context.Orders.Update(order);
             _context.SaveChanges();
         }
