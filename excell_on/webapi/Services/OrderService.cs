@@ -9,6 +9,8 @@ namespace webapi.Services
 
         IEnumerable<Order> GetById(string customerId);
 
+        IEnumerable<OrderDetail> GetOrderDetailById(string orderId);
+
         Order GetSingleById(int id);
 
         void AddNewOrder(int customerId);
@@ -17,7 +19,7 @@ namespace webapi.Services
 
         void AddNewOrderDetails(IEnumerable<OrderDetail> orderDetails, double totalCost, string customerId);
 
-        void DeleteOrder(string Id);
+        void DeleteOrder(int Id);
     }
     public class OrderService : IOrderService
     {
@@ -30,9 +32,9 @@ namespace webapi.Services
         }
         public IEnumerable<Order> GetAll()
         {
-            return _context.Orders.Include(o => o.OrderDetails).Include(c => c.Customer).Include(b => b.Bankings).ToList();
+            return _context.Orders.Include(o => o.OrderDetails).ThenInclude(d => d.Derpartment).Include(c => c.Customer).Include(b => b.Bankings).ToList();
         }
-
+        //For customer order history
         public IEnumerable<Order> GetById(string customerId)
         {
             var order = _context.Orders.Where(c => c.CustomerId == int.Parse(customerId) && c.OrderStatus != 0).ToList();
@@ -41,7 +43,7 @@ namespace webapi.Services
 
         public Order GetSingleById(int id)
         {
-            var order = _context.Orders.FirstOrDefault(c => c.Id == id);
+            var order = _context.Orders.Include(o => o.OrderDetails).ThenInclude(d => d.Derpartment).Include(o => o.OrderDetails).ThenInclude(d => d.Service).Include(c => c.Customer).FirstOrDefault(c => c.Id == id);
             return order;
         }
 
@@ -92,12 +94,17 @@ namespace webapi.Services
             _context.SaveChanges();
         }
 
-        public void DeleteOrder(string id)
+        public void DeleteOrder(int id)
         {
-            var order = _context.Orders.FirstOrDefault(i => i.Id == int.Parse(id));
+            var order = _context.Orders.FirstOrDefault(i => i.Id == id);
             order.OrderStatus = 3;
             _context.Orders.Update(order);
             _context.SaveChanges();
+        }
+
+        public IEnumerable<OrderDetail> GetOrderDetailById(string orderId)
+        {
+            return _context.OrderDetails.Where(o => o.OrdersId == int.Parse(orderId)).Include(d => d.Derpartment).Include(s => s.Service).ToList();
         }
     }
 }

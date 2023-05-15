@@ -25,7 +25,7 @@ namespace webapi.Controllers
             try
             {
                 var order = _orderService.GetAll();
-                return Ok(order);
+                return Ok(new { responseObject = order });
             }
             catch (Exception e)
             {
@@ -35,6 +35,7 @@ namespace webapi.Controllers
 
         }
         [HttpGet("allOrder/{id}"), Authorize]
+        //Customer Order History
         public ActionResult GetById(string id)
         {
             try
@@ -48,13 +49,13 @@ namespace webapi.Controllers
             }
 
         }
-        [HttpGet("order/{id}"), Authorize]
-        public ActionResult GetSingleById(string id)
+        [HttpGet("order/{id}"), Authorize("Admin")]
+        public ActionResult GetSingleById(int id)
         {
             try
             {
-                var order = _orderService.GetSingleById(int.Parse(id));
-                return Ok(order);
+                var order = _orderService.GetSingleById(id);
+                return Ok(new { responseObject = order });
             }
             catch (Exception e)
             {
@@ -102,6 +103,33 @@ namespace webapi.Controllers
                 return BadRequest(new { message = e.Message });
             }
             return Ok(new { message = "Add Success" });
+        }
+        [HttpPut("delete/{id}")]
+        public ActionResult DeleteOrder(int id)
+        {
+            try
+            {
+                _orderService.DeleteOrder(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(new { message = "Delete success" });
+        }
+        [HttpGet("orderDetail/{id}")]
+        public ActionResult GetOrderDetailById(string id)
+        {
+            try
+            {
+                var order = _orderService.GetOrderDetailById(id);
+                return Ok(new { responseObject = order });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+
         }
     }
 }
