@@ -25,7 +25,7 @@ export default function CartUser(props) {
     <>
       <Nav>
         <Nav.Link href="/cart" className='d-flex align-items-center'>
-          <i class="bi bi-cart4 fs-3"></i>
+          <i class="bi bi-cart4 fs-3"></i><span className='badge badge-info'></span>
         </Nav.Link>
         <Nav.Link href="/profile" className='px-0'>
           <img src={customer.customerAvatar} width={50} alt={customer.customerName} className='rounded-circle'/>
