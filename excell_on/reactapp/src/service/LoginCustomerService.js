@@ -6,7 +6,9 @@ class LoginCustomerService {
   login = async (username, password) => {
     const response = await axios.post(URL + '/customer/authenticate', { username, password })
     if (response.data.token) {
-      sessionStorage.setItem('customer', JSON.stringify(response.data))
+      sessionStorage.setItem('name', JSON.stringify(response.data.customerName))
+      sessionStorage.setItem('id', JSON.stringify(response.data.id))
+      sessionStorage.setItem('token', JSON.stringify(response.data.token))
       return response.data
     }
   }

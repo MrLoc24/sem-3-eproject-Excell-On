@@ -1,13 +1,19 @@
 import axios from 'axios'
 
 const URL = 'https://localhost:7207/api'
-const customer = JSON.parse(sessionStorage.getItem('customer'))
-const token = customer.token.replace(/^"(.*)"$/, '$1')
 
 class OrderService {
   static get token() {
-    const customer = JSON.parse(sessionStorage.getItem('customer'))
-    return (token = customer.token.replace(/^"(.*)"$/, '$1'))
+    let token = JSON.parse(sessionStorage.getItem('token'))
+    return token;
+  }
+
+  InitOrder = async(id) => {
+    const response = await axios({
+      method: 'POST',
+      url: URL + '/Orders' + '?id=' + id,
+    })
+    return response.data
   }
 
   GetById = async (id) => {
@@ -38,7 +44,14 @@ class OrderService {
   }
 
   AddNewOrder = async (totalCost, id) => {
-
+    const response = await axios({
+      method: 'POST',
+      url: URL + '/Orders/newOrder' + '?totalCost=' + totalCost + "&id=" + id,
+      headers:{
+        Authorization: `Bearer ${OrderService.token}`,
+      }
+    })
+    return response.data
   }
 }
 

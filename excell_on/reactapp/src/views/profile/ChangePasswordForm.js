@@ -5,8 +5,7 @@ import * as Yup from 'yup'
 import CustomerService from 'src/service/CustomerService'
 
 function ChangePasswordForm() {
-  const customer = JSON.parse(sessionStorage.getItem('customer'));
-  const id = customer.id;
+  const id = JSON.parse(sessionStorage.getItem('id'));
   // form validation rules
   const validationSchema = Yup.object().shape({
     password: Yup.string()

@@ -4,8 +4,8 @@ const URL = 'https://localhost:7207/api'
 
 class CustomerService {
   static get token() {
-    const customer = JSON.parse(sessionStorage.getItem('customer'))
-    return (token = customer.token.replace(/^"(.*)"$/, '$1'))
+    let token = JSON.parse(sessionStorage.getItem('token'))
+    return token;
   }
 
   GetAll = async () => {
