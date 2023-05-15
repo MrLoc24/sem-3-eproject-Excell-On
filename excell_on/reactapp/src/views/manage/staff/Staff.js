@@ -7,7 +7,7 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import AddNewStaff from './AddNewStaff'
 
-const AdminCustomer = () => {
+const AdminStaff = () => {
   const [state, setState] = useState([])
   const [error, setError] = useState()
   useEffect(() => {
@@ -101,4 +101,4 @@ const AdminCustomer = () => {
     </Tabs>
   )
 }
-export default AdminCustomer
+export default AdminStaff
