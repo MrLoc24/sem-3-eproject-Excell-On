@@ -4,12 +4,16 @@ import { useParams } from 'react-router-dom'
 
 const OrderDetail = () => {
   const { id } = useParams()
+  const [order, setOrder] = useState([])
+  const [customer, setCustomer] = useState([])
   const [orderDetail, setOrderDetail] = useState([{}])
 
   useEffect(() => {
     OrderService.GetById(id).then((response) => {
-      setOrderDetail(response.responseObject)
-      console.log(orderDetail.customer)
+      setOrder(response.responseObject)
+      setCustomer(response.responseObject.customer)
+      setOrderDetail(response.responseObject.orderDetails)
+      console.log(orderDetail)
     })
   }, [])
   return (
@@ -21,7 +25,7 @@ const OrderDetail = () => {
               <div className="row">
                 <div className="col-12">
                   <h4>
-                    <i className="fas fa-globe"></i> AdminLTE, Inc.
+                    <i className="fas fa-globe"></i> Excell-On Service
                     <small className="float-right">Date: {new Date().toLocaleString() + ''}</small>
                   </h4>
                 </div>
@@ -46,25 +50,20 @@ const OrderDetail = () => {
                 <div className="col-sm-4 invoice-col">
                   To
                   <address>
-                    <strong>{orderDetail.customer.customerName}</strong>
+                    <strong>{customer.customerName}</strong>
                     <br />
-                    795 Folsom Ave, Suite 600
+                    {customer.customerPhone}
                     <br />
-                    San Francisco, CA 94107
-                    <br />
-                    Phone: (555) 539-1037
-                    <br />
-                    Email: john.doe@example.com
+                    {customer.customerEmail}
                   </address>
                 </div>
 
                 <div className="col-sm-4 invoice-col">
-                  <b>Invoice #007612</b>
+                  <b>
+                    Invoice #EX-{order.id}-{order.customerId}
+                  </b>
                   <br />
-                  <br />
-                  <b>Order ID:</b> {orderDetail.id}
-                  <br />
-                  <b>Payment Due:</b> 2/22/2014
+                  <b>Order ID:</b> {order.id}
                   <br />
                   <b>Account:</b> 968-34567
                 </div>
@@ -75,43 +74,25 @@ const OrderDetail = () => {
                   <table className="table table-striped">
                     <thead>
                       <tr>
-                        <th>Qty</th>
-                        <th>Product</th>
-                        <th>Serial #</th>
-                        <th>Description</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Number of Staff</th>
+                        <th>Service</th>
                         <th>Subtotal</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Call of Duty</td>
-                        <td>455-981-221</td>
-                        <td>El snort testosterone trophy driving gloves handsome</td>
-                        <td>$64.50</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Need for Speed IV</td>
-                        <td>247-925-726</td>
-                        <td>Wes Anderson umami biodiesel</td>
-                        <td>$50.00</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Monsters DVD</td>
-                        <td>735-845-642</td>
-                        <td>Terry Richardson helvetica tousled street art master</td>
-                        <td>$10.70</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Grown Ups Blue Ray</td>
-                        <td>422-568-642</td>
-                        <td>Tousled lomo letterpress</td>
-                        <td>$25.99</td>
-                      </tr>
-                    </tbody>
+                    {orderDetail &&
+                      orderDetail.map((detail, idx) => (
+                        <tbody>
+                          <tr key={idx}>
+                            <td>{detail.orderDetailDateStart}</td>
+                            <td>{detail.orderDetailDateEnd}</td>
+                            <td>{detail.orderDetailNumberOfPeople}</td>
+                            <td>{detail.service && detail.service.serviceName}</td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      ))}
                   </table>
                 </div>
               </div>
