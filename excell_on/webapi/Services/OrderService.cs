@@ -32,7 +32,7 @@ namespace webapi.Services
         }
         public IEnumerable<Order> GetAll()
         {
-            return _context.Orders.Include(o => o.OrderDetails).ThenInclude(d => d.Derpartment).Include(c => c.Customer).Include(b => b.Bankings).ToList();
+            return _context.Orders.Include(o => o.OrderDetails).ThenInclude(d => d.Department).Include(c => c.Customer).Include(b => b.Bankings).ToList();
         }
         //For customer order history
         public IEnumerable<Order> GetById(string customerId)
@@ -43,7 +43,7 @@ namespace webapi.Services
 
         public Order GetSingleById(int id)
         {
-            var order = _context.Orders.Include(o => o.OrderDetails).ThenInclude(d => d.Derpartment).Include(o => o.OrderDetails).ThenInclude(d => d.Service).Include(c => c.Customer).FirstOrDefault(c => c.Id == id);
+            var order = _context.Orders.Include(o => o.OrderDetails).ThenInclude(d => d.Department).Include(o => o.OrderDetails).ThenInclude(d => d.Service).Include(c => c.Customer).FirstOrDefault(c => c.Id == id);
             return order;
         }
 
@@ -76,7 +76,7 @@ namespace webapi.Services
             {
                 var od = new OrderDetail
                 {
-                    DerpartmentId = detail.DerpartmentId,
+                    DepartmentId = detail.DepartmentId,
                     ServiceId = detail.ServiceId,
                     OrderDetailDateStart = detail.OrderDetailDateStart,
                     OrderDetailDateEnd = detail.OrderDetailDateEnd,
@@ -104,7 +104,7 @@ namespace webapi.Services
 
         public IEnumerable<OrderDetail> GetOrderDetailById(string orderId)
         {
-            return _context.OrderDetails.Where(o => o.OrdersId == int.Parse(orderId)).Include(d => d.Derpartment).Include(s => s.Service).ToList();
+            return _context.OrderDetails.Where(o => o.OrdersId == int.Parse(orderId)).Include(d => d.Department).Include(s => s.Service).ToList();
         }
     }
 }

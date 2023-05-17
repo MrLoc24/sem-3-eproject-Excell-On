@@ -16,6 +16,21 @@ const OrderDetail = () => {
       console.log(orderDetail)
     })
   }, [])
+  const status = () => {
+    switch (order.orderStatus) {
+      case 0:
+        return 'Pending'
+      case 1:
+        return 'Activated'
+      case 2:
+        return 'Completed'
+      case 3:
+        return 'Deleted'
+      case 99:
+        return 'Money Transferred'
+    }
+  }
+
   return (
     <section className="content">
       <div className="container-fluid">
@@ -26,7 +41,7 @@ const OrderDetail = () => {
                 <div className="col-12">
                   <h4>
                     <i className="fas fa-globe"></i> Excell-On Service
-                    <small className="float-right">Date: {new Date().toLocaleString() + ''}</small>
+                    <small className="float-right">: {order.orderDateCreate}</small>
                   </h4>
                 </div>
               </div>
@@ -35,7 +50,7 @@ const OrderDetail = () => {
                 <div className="col-sm-4 invoice-col">
                   From
                   <address>
-                    <strong>Admin, Inc.</strong>
+                    <strong>Admin</strong>
                     <br />
                     795 Folsom Ave, Suite 600
                     <br />
@@ -78,7 +93,7 @@ const OrderDetail = () => {
                         <th>End Date</th>
                         <th>Number of Staff</th>
                         <th>Service</th>
-                        <th>Subtotal</th>
+                        <th>Department</th>
                       </tr>
                     </thead>
                     {orderDetail &&
@@ -89,7 +104,7 @@ const OrderDetail = () => {
                             <td>{detail.orderDetailDateEnd}</td>
                             <td>{detail.orderDetailNumberOfPeople}</td>
                             <td>{detail.service && detail.service.serviceName}</td>
-                            <td></td>
+                            <td>{detail.department && detail.department.name}</td>
                           </tr>
                         </tbody>
                       ))}
@@ -123,16 +138,13 @@ const OrderDetail = () => {
                           <td>$250.30</td>
                         </tr>
                         <tr>
-                          <th>Tax (9.3%)</th>
-                          <td>$10.34</td>
+                          <th>Status:</th>
+                          <td>{status()}</td>
                         </tr>
-                        <tr>
-                          <th>Shipping:</th>
-                          <td>$5.80</td>
-                        </tr>
+
                         <tr>
                           <th>Total:</th>
-                          <td>$265.24</td>
+                          <td>${order.orderTotalCost}</td>
                         </tr>
                       </tbody>
                     </table>

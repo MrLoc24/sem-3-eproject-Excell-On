@@ -60,6 +60,19 @@ namespace webapi.Controllers
             }
             return Ok(new { message = "Deleted successfully" });
         }
+        [HttpPut("activateStatus/{id}")]
+        public IActionResult Activate(string id)
+        {
+            try
+            {
+                _staffService.Activate(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(new { message = "Staff Ready" });
+        }
 
         [HttpPost]
         public IActionResult AddNew(staff staffs)
@@ -73,6 +86,33 @@ namespace webapi.Controllers
             {
                 return BadRequest(new { message = e.Message });
             }
+        }
+        [HttpPut("UpdateAvatar/{id}")]
+        public IActionResult UpdateAvatar(string id, string url)
+        {
+            try
+            {
+                _staffService.UpdateAvatar(id, url);
+            }
+            catch (Exception e)
+            {
+                return Ok(new { status = "fail", message = e.Message });
+            }
+            return Ok(new { message = "Avatar Update" });
+        }
+        [HttpPut("updateProfile/{id}")]
+        public IActionResult UpdateProfile(staff sta)
+        {
+            try
+            {
+                _staffService.UpdateProfile(sta);
+                return Ok(new { message = "Staff Update" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            
         }
     }
 }

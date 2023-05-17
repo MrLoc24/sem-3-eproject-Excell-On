@@ -16,8 +16,7 @@ const AppCustomerFooter = () => {
             </div>
           </div>
 
-          <div className="col-2">
-          </div>
+          <div className="col-2"></div>
 
           <div className="col-2">
             <h5>Section</h5>
@@ -80,12 +79,10 @@ const AppCustomerFooter = () => {
               </li>
             </ul>
           </div>
-
-          
         </div>
 
         <div className="d-flex justify-content-between py-4 my-4 border-top">
-          <p>© 2021 Company, Inc. All rights reserved.</p>
+          <p>© 2023 Company, Inc. All rights reserved.</p>
           <ul className="list-unstyled d-flex">
             <li className="ms-3">
               <a className="link-dark" href="#">
