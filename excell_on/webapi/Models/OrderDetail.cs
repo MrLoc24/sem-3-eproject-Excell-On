@@ -17,9 +17,9 @@ namespace webapi.Models
         public int? OrderDetailNumberOfPeople { get; set; }
         public int? ServiceId { get; set; }
         public int? OrdersId { get; set; }
-        public int? DerpartmentId { get; set; }
+        public int? DepartmentId { get; set; }
 
-        public virtual Department? Derpartment { get; set; }
+        public virtual Department? Department { get; set; }
         public virtual Order? Orders { get; set; }
         public virtual Service? Service { get; set; }
         public virtual ICollection<StaffOrderDetail> StaffOrderDetails { get; set; }

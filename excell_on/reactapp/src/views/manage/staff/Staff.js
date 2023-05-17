@@ -31,6 +31,14 @@ const AdminStaff = () => {
       window.location.reload()
     })
   }
+  const handleActivateClick = (e, id) => {
+    e.preventDefault()
+    confirm('Sure ????')
+    StaffService.Activate(id).then((res) => {
+      alert(res.message)
+      window.location.reload()
+    })
+  }
   let navigate = useNavigate()
   const handleButtonClick = (e, id) => {
     e.preventDefault()
@@ -69,7 +77,7 @@ const AdminStaff = () => {
       sortable: true,
     },
     {
-      name: 'Deleted',
+      name: 'Status',
       selector: (row) => (row.deleted ? 'Inactive' : 'Active'),
       sortable: true,
     },
@@ -79,9 +87,15 @@ const AdminStaff = () => {
           <button className="btn btn-primary m-lg-1" onClick={(e) => handleButtonClick(e, row.id)}>
             Detail
           </button>
-          <button className="btn btn-danger" onClick={(e) => handleDeleteClick(e, row.id)}>
-            Delete
-          </button>
+          {!row.deleted ? (
+            <button className="btn btn-danger" onClick={(e) => handleDeleteClick(e, row.id)}>
+              Delete
+            </button>
+          ) : (
+            <button className="btn btn-success" onClick={(e) => handleActivateClick(e, row.id)}>
+              Active
+            </button>
+          )}
         </>
       ),
       ignoreRowClick: true,

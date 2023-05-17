@@ -15,6 +15,7 @@ namespace webapi.Services
         void UpdateAvatar(string id, string url);
         void AddNewStaff(staff staff);
         void Delete(string id);
+        void Activate(string id);
     }
     public class StaffService : IStaffService
     {
@@ -52,17 +53,20 @@ namespace webapi.Services
 
         public staff GetById(int id)
         {
-            return _context.staff.Include(d => d.Department).Include(s => s.Service).Include(s => s.StaffOrderDetails).FirstOrDefault(c => c.Id.Equals(id));
+            return _context.staff.Include(d => d.Department).Include(s => s.Service).Include(s => s.StaffOrderDetails).FirstOrDefault(c => c.Id.Equals(id)) ?? throw new Exception("Staff not found");
         }
 
         public void UpdateAvatar(string id, string url)
         {
-            throw new NotImplementedException();
+            staff foundStaff = GetById(int.Parse(id));
+            foundStaff.StaffAvatar = url;
+            _context.staff.Update(foundStaff);
+            _context.SaveChanges();
         }
 
         public void UpdateProfile(staff staffs)
         {
-            staff foundStaff = GetById(staffs.Id) ?? throw new Exception("Staff not found"); ;
+            staff foundStaff = _context.staff.FirstOrDefault(s => s.Id == staffs.Id) ?? throw new Exception("Staff not found"); ;
             foundStaff.StaffGender = staffs.StaffGender;
             foundStaff.StaffAddress = staffs.StaffAddress;
             foundStaff.StaffAge = staffs.StaffAge;
@@ -94,6 +98,26 @@ namespace webapi.Services
             }
 
 
+        }
+
+        public void Activate(string id)
+        {
+            staff staff = _context.staff.Find(int.Parse(id));
+            try
+            {
+                if (staff != null)
+                {
+                    staff.Deleted = false;
+                    _context.staff.Update(staff);
+                    _context.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Staff not found");
+            }
         }
     }
 }

@@ -34,6 +34,16 @@ class StaffService {
     })
     return response.data
   }
+  Activate = async (id) => {
+    const response = await axios({
+      method: 'put',
+      url: URL + '/staff/activateStatus/' + id,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
+      },
+    })
+    return response.data
+  }
   AddNew = async (data) => {
     const response = await axios({
       method: 'POST',
@@ -54,6 +64,27 @@ class StaffService {
       },
     })
     return response.data.responseObject
+  }
+  UpdateAvatar = async (id, data) => {
+    const response = await axios({
+      method: 'put',
+      url: URL + '/staff/updateAvatar/' + id + '?url=' + data,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
+      },
+    })
+    return response.data
+  }
+  UpdateProfile = async (id, data) => {
+    const response = await axios({
+      method: 'put',
+      url: URL + '/staff/updateProfile/' + id,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token').replace(/^"(.*)"$/, '$1')}`,
+      },
+      data: data,
+    })
+    return response.data
   }
 }
 export default new StaffService()

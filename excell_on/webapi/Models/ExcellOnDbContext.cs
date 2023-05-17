@@ -165,9 +165,9 @@ namespace webapi.Models
 
                 entity.Property(e => e.OrderDetailDateStart).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Derpartment)
+                entity.HasOne(d => d.Department)
                     .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.DerpartmentId)
+                    .HasForeignKey(d => d.DepartmentId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_OrderDetail_Department");
 
