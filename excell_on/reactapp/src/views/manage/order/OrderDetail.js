@@ -4,14 +4,17 @@ import { useParams } from 'react-router-dom'
 
 const OrderDetail = () => {
   const { id } = useParams()
-  const [orderDetail, setOrderDetail] = useState([{}])
+  const [orderDetail, setOrderDetail] = useState({})
+  const [customerName, setCustomerName] = useState('');
 
   useEffect(() => {
     OrderService.GetById(id).then((response) => {
-      setOrderDetail(response.responseObject)
-      console.log(orderDetail.customer)
+      setOrderDetail(response.responseObject);
+      setCustomerName(response.responseObject.customer.customerName);
+      console.log(orderDetail);
     })
   }, [])
+
   return (
     <section className="content">
       <div className="container-fluid">
@@ -46,7 +49,7 @@ const OrderDetail = () => {
                 <div className="col-sm-4 invoice-col">
                   To
                   <address>
-                    <strong>{orderDetail.customer.customerName}</strong>
+                    <strong>{customerName}</strong>
                     <br />
                     795 Folsom Ave, Suite 600
                     <br />

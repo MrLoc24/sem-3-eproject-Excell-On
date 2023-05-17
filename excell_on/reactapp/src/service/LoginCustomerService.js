@@ -13,7 +13,7 @@ class LoginCustomerService {
     }
   }
   logout = () => {
-    sessionStorage.removeItem('customer')
+    sessionStorage.clear()
   }
 }
 export default new LoginCustomerService()
