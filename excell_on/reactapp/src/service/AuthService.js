@@ -10,8 +10,8 @@ class AuthService {
       sessionStorage.setItem('token', JSON.stringify(response.data.token))
       sessionStorage.setItem('avatar', JSON.stringify(response.data.avatar))
       sessionStorage.setItem('id', JSON.stringify(response.data.id))
-      return response.data
     }
+    return response.data
   }
   logout = () => {
     sessionStorage.removeItem('user')

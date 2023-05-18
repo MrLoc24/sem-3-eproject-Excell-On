@@ -32,7 +32,13 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">
-          <CIcon icon={logo} height={48} alt="Logo" />
+          <img
+            src="https://res.cloudinary.com/locnguyen2409/image/upload/v1683466970/Logo_vqh3kn.svg"
+            width="200"
+            height="80"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>

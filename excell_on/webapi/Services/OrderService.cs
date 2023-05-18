@@ -37,7 +37,7 @@ namespace webapi.Services
         //For customer order history
         public IEnumerable<Order> GetById(string customerId)
         {
-            var order = _context.Orders.Where(c => c.CustomerId == int.Parse(customerId) && c.OrderStatus != 0).ToList();
+            var order = _context.Orders.Include(o => o.OrderDetails).ThenInclude(d => d.Department).Include(o => o.OrderDetails).ThenInclude(d => d.Service).Include(c => c.Customer).Where(c => c.CustomerId == int.Parse(customerId) && c.OrderStatus != 0).ToList();
             return order;
         }
 
