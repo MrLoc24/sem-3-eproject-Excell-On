@@ -13,7 +13,7 @@ export default function FormInput(props) {
         onChange={onChange}
         {...others}
       />
-      <span className='error-message text-danger d-none'>{errorMessage}</span>
+      <span className='error-message d-none text-danger'>{errorMessage}</span>
     </div>
   )
 }

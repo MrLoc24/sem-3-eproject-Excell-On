@@ -28,4 +28,5 @@ class Order {
     return response.data
   }
 }
+
 export default new Order()

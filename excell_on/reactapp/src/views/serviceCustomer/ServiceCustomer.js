@@ -2,16 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ServiceService from 'src/service/ServiceService'
 import { Breadcrumb } from 'src/components'
-import {ContactSection, AboutSection} from 'src/components'
+import {ContactSection, AboutSection, ServiceModal} from 'src/components'
 
 export default function ServiceCustomer() {
   const params = useParams()
   const [service, setService] = useState({})
+
   useEffect(() => {
     ServiceService.GetById(params.id).then((response) => {
       setService(response)
+      console.log(response);
     })
   }, [])
+
+
 
   return (
     <>
@@ -33,9 +37,7 @@ export default function ServiceCustomer() {
             </ul>
             <h5>Price: ${service.servicePrice}/Day (for 1 employee)</h5>
             <div className="container ps-0 ">
-              <button type="button" className="btn btn-primary px-4">
-                Add to Cart
-              </button>
+              <ServiceModal title={service.serviceName} id={service.id} price={service.servicePrice}/>
             </div>
           </div>
         </div>

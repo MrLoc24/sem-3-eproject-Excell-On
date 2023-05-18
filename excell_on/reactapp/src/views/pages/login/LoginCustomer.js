@@ -16,6 +16,7 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { useNavigate } from 'react-router-dom'
 import LoginCustomerService from 'src/service/LoginCustomerService'
+import OrderCustomerService from 'src/service/OrderCustomerService'
 
 const Login = () => {
   const [username, setUsername] = useState('')
@@ -24,10 +25,28 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault()
     LoginCustomerService.login(username, password).then(
-      () => {
-        navigate('/')
-        window.location.reload()
-        console.log('login successful')
+      (response) => {
+        if (response) {
+          OrderCustomerService.PendingOrder(response.id).then((res) => {
+            console.log(res);
+            if (res.id) {
+              sessionStorage.setItem('orderId', res.id)
+              sessionStorage.setItem('amount', res.orderDetails.length)
+            } else {
+              OrderCustomerService.InitOrder(response.id).then(() => {
+                OrderCustomerService.PendingOrder(response.id).then((res) => {
+                  sessionStorage.setItem('orderId', res.id)
+                  sessionStorage.setItem('amount', res.orderDetails.length)
+                })
+              })
+            }
+            navigate('/')
+            window.location.reload()
+            console.log('login successful')
+          })
+        } else {
+          window.location.reload()
+        }
       },
       (error) => {
         const resMessage =
@@ -55,7 +74,7 @@ const Login = () => {
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <input
-                        className='form-control'
+                        className="form-control"
                         name="username"
                         type="text"
                         placeholder="Username"
@@ -68,7 +87,7 @@ const Login = () => {
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <input
-                        className='form-control'
+                        className="form-control"
                         name="password"
                         type="password"
                         placeholder="Password"

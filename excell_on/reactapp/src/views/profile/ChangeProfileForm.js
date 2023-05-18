@@ -3,8 +3,7 @@ import CustomerService from 'src/service/CustomerService'
 import { FormInput } from 'src/components'
 
 const ChangProfileForm = () => {
-  const customer = JSON.parse(sessionStorage.getItem('customer'))
-  const id = customer.id
+  const id = JSON.parse(sessionStorage.getItem('id'))
   const [state, setState] = useState([])
   useEffect(() => {
     CustomerService.GetById(id).then((response) => {

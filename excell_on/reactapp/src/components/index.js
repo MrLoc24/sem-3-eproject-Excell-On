@@ -16,6 +16,7 @@ import {CartUser} from './CartUser'
 import { LoginButton } from './LoginButton'
 import AboutSection from './AboutSection/AboutSection'
 import FormInput from './FormInput/FormInput'
+import ServiceModal from './ServiceModal/ServiceModal'
 
 export {
   AppBreadcrumb,
@@ -35,5 +36,6 @@ export {
   CartUser,
   LoginButton,
   AboutSection,
-  FormInput
+  FormInput,
+  ServiceModal,
 }

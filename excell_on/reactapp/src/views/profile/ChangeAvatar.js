@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CustomerService from 'src/service/CustomerService';
 const ChangeAvatar = () => {
-  const customer = JSON.parse(sessionStorage.getItem('customer'));
-  const id = customer.id;
+  const id = JSON.parse(sessionStorage.getItem('id'));
   const [state, setState] = useState([])
   const [uploadFile, setUploadFile] = useState('')
   console.log(id)
