@@ -43,13 +43,14 @@ class OrderService {
     return response.data
   }
 
-  AddNewOrder = async (totalCost, id) => {
+  AddNewOrder = async (totalCost, id, data) => {
     const response = await axios({
       method: 'POST',
       url: URL + '/Orders/newOrder' + '?totalCost=' + totalCost + "&id=" + id,
       headers:{
         Authorization: `Bearer ${OrderService.token}`,
-      }
+      },
+      data: data
     })
     return response.data
   }

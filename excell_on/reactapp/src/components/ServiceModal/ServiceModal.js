@@ -10,6 +10,33 @@ export default function ServiceModal(props) {
   const [show, setShow] = useState(false)
   const navigate = useNavigate()
 
+  const department = [
+    {
+      id: 1,
+      name: 'HR Management',
+    },
+    {
+      id: 2,
+      name: 'Administration',
+    },
+    {
+      id: 3,
+      name: 'Service',
+    },
+    {
+      id: 4,
+      name: 'Training',
+    },
+    {
+      id: 5,
+      name: 'Internet Security',
+    },
+    {
+      id: 6,
+      name: 'Auditor',
+    },
+  ]
+
   const handleClose = () => setShow(false)
   const handleShow = () => {
     if (sessionStorage.getItem('id')) {
@@ -38,31 +65,25 @@ export default function ServiceModal(props) {
   })
 
   const onSubmit = (data) => {
+    let newItem = [
+      {
+        DepartmentId: Number(data.department),
+        ServiceId: props.id,
+        OrderDetailDateStart: data.startDate,
+        OrderDetailDateEnd: data.endDate,
+        OrderDetailNumberOfPeople: data.employee,
+        Id: sessionStorage.getItem('orderId'),
+        department: department.filter((item) => item.id == Number(data.department))[0].name,
+        service: props.title,
+        price: props.price,
+        subTotal: data.employee * props.price,
+      },
+    ]
     if (localStorage.getItem('cart')) {
-      let newItem = [
-        {
-          ...data,
-          id: props.id,
-          service: props.title,
-          price: props.price,
-          subTotal: data.employee * props.price
-        },
-      ]
       let newCart = JSON.parse(localStorage.getItem('cart')).concat(newItem)
       localStorage.setItem('cart', JSON.stringify(newCart))
     } else {
-      localStorage.setItem(
-        'cart',
-        JSON.stringify([
-          {
-            ...data,
-            id: props.id,
-            service: props.title,
-            price: props.price,
-            subTotal: data.employee * props.price
-          }
-        ]),
-      )
+      localStorage.setItem('cart', JSON.stringify(newItem))
     }
     alert('Add to cart successfully!')
     window.location.reload()
@@ -83,11 +104,9 @@ export default function ServiceModal(props) {
             <Form.Group className="mb-3" controlId="department">
               <Form.Label>Department</Form.Label>
               <Form.Select name="department" {...register('department')}>
-                <option>HR Management</option>
-                <option>Service</option>
-                <option>Training</option>
-                <option>Internet Security</option>
-                <option>Auditor</option>
+                {department.map((item) => (
+                  <option value={item.id}>{item.name}</option>
+                ))}
               </Form.Select>
               {errors.department && <p className="text-danger">{errors.department.message}</p>}
             </Form.Group>
