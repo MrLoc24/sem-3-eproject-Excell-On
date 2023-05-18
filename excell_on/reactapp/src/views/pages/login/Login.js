@@ -23,20 +23,15 @@ const Login = () => {
   let navigate = useNavigate()
   const handleLogin = (e) => {
     e.preventDefault()
-    AuthService.login(username, password).then(
-      () => {
+    AuthService.login(username, password)
+      .then(() => {
         navigate('/admin/dashboard')
         window.location.reload()
         console.log('login successful')
-      },
-      (error) => {
-        const resMessage =
-          (error.response && error.response.data && error.response.data.message) ||
-          error.message ||
-          error.toString()
-        console.log(resMessage)
-      },
-    )
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
   }
 
   return (
@@ -55,7 +50,7 @@ const Login = () => {
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <input
-                        className='form-control'
+                        className="form-control"
                         name="username"
                         type="text"
                         placeholder="Username"
@@ -68,7 +63,7 @@ const Login = () => {
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <input
-                        className='form-control'
+                        className="form-control"
                         name="password"
                         type="password"
                         placeholder="Password"

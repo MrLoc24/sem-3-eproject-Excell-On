@@ -31,7 +31,7 @@ namespace webapi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new { status = "fail", message = e.Message, responseObject = "" });
+                return BadRequest(new {  message = e.Message});
             }
 
             return Ok(response);

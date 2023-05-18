@@ -112,11 +112,11 @@ namespace webapi.Services
         {
             if (_context.UserInFos.Any(x => x.UserEmail == user.UserEmail))
             {
-                throw new AppException("User with email address: " + user.UserEmail + "already exists");
+                throw new Exception("User with email address: " + user.UserEmail + "already exists");
             }
             if (_context.UserInFos.Any(x => x.UserName == user.UserName))
             {
-                throw new AppException("User with user name: " + user.UserName + "already exists");
+                throw new Exception("User with user name: " + user.UserName + "already exists");
             }
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword("12345");
             user.UserPassword = hashedPassword;
