@@ -40,17 +40,17 @@ export default function Cart() {
     },
     {
       name: 'Start Date',
-      selector: (row) => row.startDate,
+      selector: (row) => row.OrderDetailDateStart,
       sortable: true,
     },
     {
       name: 'End Date',
-      selector: (row) => row.endDate,
+      selector: (row) => row.OrderDetailDateEnd,
       sortable: true,
     },
     {
       name: 'Number of Employees',
-      selector: (row) => row.employee,
+      selector: (row) => row.OrderDetailNumberOfPeople,
       sortable: true,
     },
     {
@@ -89,7 +89,7 @@ export default function Cart() {
         <div className='container'>
           <h4>Summary</h4>
           <h3>Total Cost: {data.reduce((total, item) => total + item.subTotal, 0)}</h3>
-          <button className='btn btn-primary'>Checkout</button>
+          <a type='button' href='/checkout' className='btn btn-primary'>Checkout</a>
         </div>
       </div>
       <AboutSection/>
