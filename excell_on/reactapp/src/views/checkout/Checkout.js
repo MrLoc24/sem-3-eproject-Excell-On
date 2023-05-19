@@ -23,7 +23,19 @@ export default function Checkout() {
     CustomerService.GetById(id).then((response) => {
       setCustomer(response)
       OrderCustomerService.PendingOrder(response.id).then((res) => {
-        setOrder(res)
+        if (res.id) {
+          sessionStorage.setItem('orderId', res.id)
+          sessionStorage.setItem('amount', res.orderDetails.length)
+          setOrder(res)
+        } else {
+          OrderCustomerService.InitOrder(response.id).then(() => {
+            OrderCustomerService.PendingOrder(response.id).then((res) => {
+              sessionStorage.setItem('orderId', res.id)
+              sessionStorage.setItem('amount', res.orderDetails.length)
+              setOrder(res)
+            })
+          })
+        }
       })
     })
   }, [])
