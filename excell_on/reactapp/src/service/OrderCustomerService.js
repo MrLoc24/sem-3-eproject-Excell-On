@@ -5,10 +5,10 @@ const URL = 'https://localhost:7207/api'
 class OrderService {
   static get token() {
     let token = JSON.parse(sessionStorage.getItem('token'))
-    return token;
+    return token
   }
 
-  InitOrder = async(id) => {
+  InitOrder = async (id) => {
     const response = await axios({
       method: 'POST',
       url: URL + '/Orders' + '?id=' + id,
@@ -43,14 +43,14 @@ class OrderService {
     return response.data
   }
 
-  AddNewOrder = async (totalCost, id, data) => {
+  AddNewOrder = async (data, totalCost, id) => {
     const response = await axios({
       method: 'POST',
-      url: URL + '/Orders/newOrder' + '?totalCost=' + totalCost + "&id=" + id,
-      headers:{
+      url: URL + '/Orders/newOrder' + '?totalCost=' + totalCost + '&id=' + id,
+      headers: {
         Authorization: `Bearer ${OrderService.token}`,
       },
-      data: data
+      data: data,
     })
     return response.data
   }

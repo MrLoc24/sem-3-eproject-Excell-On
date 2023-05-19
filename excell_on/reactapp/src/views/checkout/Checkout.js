@@ -44,12 +44,16 @@ export default function Checkout() {
     console.log(id)
     console.log(total)
     console.log(newArray)
-    OrderCustomerService.AddNewOrder(total, id, newArray).then((res) => {
-      alert(res.message)
-      localStorage.clear()
-      navigate('/')
-      window.location.reload()
-    })
+    OrderCustomerService.AddNewOrder(newArray, total, id)
+      .then((res) => {
+        alert(res.message)
+        localStorage.clear()
+        navigate('/')
+        window.location.reload()
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
   }
 
   const columns = [
