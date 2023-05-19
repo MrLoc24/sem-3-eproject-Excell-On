@@ -11,6 +11,8 @@ const Profile = React.lazy(() => import('./views/profile/Profile'))
 const Cart = React.lazy(() => import('./views/cart/Cart'))
 const EmptyCart = React.lazy(() => import('./views/cart/EmptyCart'))
 const Checkout = React.lazy(() => import('./views/checkout/Checkout'))
+const OrderHistory = React.lazy(() => import('./views/orderHistory/OrderHistory'))
+const OrderHistoryDetail = React.lazy(() => import('./views/orderHistory/OrderHistoryDetail'))
 
 const routesCustomer = [
   { path: '/', name: 'Home', element: Home, exact: true },
@@ -23,7 +25,10 @@ const routesCustomer = [
   { path: '/profile', name: 'Profile', element: Profile, exact: true },
   { path: '/cart', name: 'Cart', element: Cart, exact: true },
   { path: '/empty', name: 'EmptyCart', element: EmptyCart, exact: true },
-  { path: '/checkout', name: 'Checkout', element: Checkout, exact: true }
+  { path: '/checkout', name: 'Checkout', element: Checkout, exact: true },
+  { path: '/history', name: 'OrderHistory', element: OrderHistory, exact: true },
+  { path: '/detailHistory/:id', name: 'OrderHistoryDetail', element: OrderHistoryDetail, exact: true },
+
 ]
 
 export default routesCustomer

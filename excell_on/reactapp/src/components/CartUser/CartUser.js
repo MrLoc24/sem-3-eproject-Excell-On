@@ -58,6 +58,9 @@ export default function CartUser(props) {
           <NavDropdown.Item href="/profile">
             <i class="bi bi-gear me-2"></i>Profile
           </NavDropdown.Item>
+          <NavDropdown.Item href="/history">
+            <i class="bi bi-clipboard2-check"></i>Order History
+          </NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>
             <i class="bi bi-arrow-bar-right me-2"></i>Logout
           </NavDropdown.Item>
