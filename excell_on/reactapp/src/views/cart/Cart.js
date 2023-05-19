@@ -84,7 +84,7 @@ export default function Cart() {
   return (
     <>
       <Breadcrumb title="Cart" />
-      <div className="container my-5">
+      <div className="container-fluid my-5">
         <DataTable columns={columns} data={data} pagination />
         <div className='container'>
           <h4>Summary</h4>

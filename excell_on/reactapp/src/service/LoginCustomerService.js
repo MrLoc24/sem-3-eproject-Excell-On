@@ -5,6 +5,7 @@ const URL = 'https://localhost:7207/api'
 class LoginCustomerService {
   login = async (username, password) => {
     const response = await axios.post(URL + '/customer/authenticate', { username, password })
+    localStorage.removeItem('cart');
     if (response.data.token) {
       sessionStorage.setItem('name', JSON.stringify(response.data.customerName))
       sessionStorage.setItem('id', JSON.stringify(response.data.id))

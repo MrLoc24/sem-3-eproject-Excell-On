@@ -22,7 +22,7 @@ class OrderService {
         Authorization: `Bearer ${OrderService.token}`,
       },
     })
-    return response.data.responseObject
+    return response.data
   }
 
   GetSingleById = async (id) => {

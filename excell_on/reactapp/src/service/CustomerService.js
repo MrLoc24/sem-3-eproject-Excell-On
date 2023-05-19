@@ -26,6 +26,17 @@ class CustomerService {
     return response.data.responseObject
   }
 
+  CreateCustomer = async (data) => {
+    const response = await axios({
+      method: 'POST',
+      url: URL + '/Customer/CreateCustomer',
+      headers: {
+        Authorization: `Bearer ${CustomerService.token}`,
+      },
+      data: data
+    })
+  }
+
   ChangePassword = async (id, password) => {
     const response = await axios({
       method: 'put',

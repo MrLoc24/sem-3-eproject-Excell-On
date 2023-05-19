@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import Cart from 'src/views/cart/Cart'
 
 export default function ServiceModal(props) {
   const [show, setShow] = useState(false)

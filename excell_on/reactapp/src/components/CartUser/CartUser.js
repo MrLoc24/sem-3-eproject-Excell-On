@@ -7,7 +7,7 @@ import './CartUser.scss'
 
 export default function CartUser(props) {
   const [customer, setCustomer] = useState({})
-  const [cartAmount, setCartAmount] = useState(0)
+  const [cartAmount, setCartAmount] = useState('')
 
   const navigate = useNavigate()
   const handleLogout = () => {
@@ -33,7 +33,7 @@ export default function CartUser(props) {
   return (
     <>
       <Nav>
-        <Nav.Link href="/cart" className="d-flex align-items-center mx-3">
+        <Nav.Link href={cartAmount == '' ? '/empty' : '/cart'} className="d-flex align-items-center mx-3">
           <i class="bi bi-cart4 fs-3 position-relative">
             <Badge
               pill
@@ -45,16 +45,21 @@ export default function CartUser(props) {
           </i>
         </Nav.Link>
         <Nav.Link href="/profile" className="px-0">
-          <img
-            src={customer.customerAvatar}
-            width={50}
-            alt={customer.customerName}
-            className="rounded-circle"
-          />
+          {customer.customerAvatar && (
+            <img
+              src={customer.customerAvatar}
+              width={50}
+              alt={customer.customerName}
+              className="rounded-circle"
+            />
+          )}
         </Nav.Link>
         <NavDropdown className="my-auto" title={props.username} id="collasible-nav-dropdown">
           <NavDropdown.Item href="/profile">
             <i class="bi bi-gear me-2"></i>Profile
+          </NavDropdown.Item>
+          <NavDropdown.Item href="/history">
+            <i class="bi bi-clipboard2-check"></i>Order History
           </NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>
             <i class="bi bi-arrow-bar-right me-2"></i>Logout
