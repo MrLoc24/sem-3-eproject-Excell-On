@@ -10,11 +10,12 @@ export default function Checkout() {
   const [customer, setCustomer] = useState({})
   const [order, setOrder] = useState({})
   const [data, setData] = useState([])
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem('cart'))
     setData(data)
+    console.log(data)
   }, [])
 
   useEffect(() => {
@@ -26,19 +27,29 @@ export default function Checkout() {
       })
     })
   }, [])
+  let newArray = data.map(function (item) {
+    let newItem = { ...item }
+    delete newItem.department
+    delete newItem.price
+    delete newItem.Id
+    delete newItem.service
+    delete newItem.subTotal
+    return newItem
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const total = data.reduce((total, item) => total + item.subTotal, 0)
     const id = sessionStorage.getItem('id')
-    OrderCustomerService.AddNewOrder(total, id, data).then((res) => {
-      console.log(res);
-      alert("Order Successfully!");
-      localStorage.clear();
-      navigate('/');
-      window.location.reload();
+    console.log(id)
+    console.log(total)
+    console.log(newArray)
+    OrderCustomerService.AddNewOrder(total, id, newArray).then((res) => {
+      alert(res.message)
+      localStorage.clear()
+      navigate('/')
+      window.location.reload()
     })
-
   }
 
   const columns = [
