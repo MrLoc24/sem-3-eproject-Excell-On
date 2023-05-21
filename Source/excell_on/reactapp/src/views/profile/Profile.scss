@@ -1,0 +1,19 @@
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: black;
+    background-color: #ffffff;
+}
+
+.nav-pills .nav-link {
+    background: #064c5b;
+    border: 0;
+    border-radius: 25px 0px 0px 25px;
+}
+
+.card{
+    border-radius: 25px;
+    border: none;
+}
+
+.side-menu{
+    min-height: 20rem;
+}
